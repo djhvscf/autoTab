@@ -1,0 +1,28 @@
+{
+    "name": "autoTab",
+    "version": "1.0.0",
+    "title": "autoTab",
+    "description": "A jQuery Plugin that allows font responsive",
+    "author": {
+        "name": "Dennis Heránadez Vargas",
+        "email": "djhv92@hotmail.com",
+        "url": "http://djhvscf.github.io/Blog"
+    },
+    "licenses": [
+        {
+            "type": "MIT License",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">=1.7"
+    },
+    "keywords": ["autotab.jquery"],
+    "homepage": "https://github.com/djhvscf/autoTab",
+    "demo": "http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html",
+    "bugs": {
+        "url": "https://github.com/djhvscf/autoTab/issues"
+    },
+    "docs": "https://github.com/djhvscf/autoTab",
+    "download": "https://github.com/djhvscf/autoTab/releases"
+}
