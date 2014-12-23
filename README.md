@@ -30,7 +30,7 @@ $(function() {
 **Parameters**   
 This plugin is not receiving parameters.
 
-**Demo:** [http://djhvscf.github.io/Blog/experiments/2014/12/jFont.html](http://djhvscf.github.io/Blog/experiments/2014/12/jFont.html)
+**Demo:** [http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html](http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html)
 
 ## Reporting issues
 Your feedback is very appreciated! <br />
