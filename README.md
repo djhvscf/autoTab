@@ -1,4 +1,4 @@
-# autoTab [![Build Status](https://travis-ci.org/djhvscf/jFont.svg?branch=master)](https://travis-ci.org/djhvscf/autoTab)
+# autoTab [![Build Status](https://travis-ci.org/djhvscf/autoTab.svg?branch=master)](https://travis-ci.org/djhvscf/autoTab)
 A jQuery plugin that allows the auto tab between inputs and text areas. It is beautiful and lightweight plugin.
 
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
