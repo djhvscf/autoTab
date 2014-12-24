@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v1.0.0
+ * @version: v1.3.0
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *
@@ -36,8 +36,9 @@
 	$.autoTab = function(options) {
 		var defaults = {autoFocus: false},
 		options = $.extend(defaults, options),
-		elements = $('[data-tab]').not('body'),
-		elementHelper = null,
+		dataLength = 'data-length',
+		dataTab = 'data-tab',
+		elements = $.makeArray($('[' + dataTab + ']').not('body')),
         notAllowKeys = [9, 16, 37, 38, 39, 40],
 		imposeMaxLength = function (textArea) {
 			if (textArea.value.length <=  parseInt($(textArea).attr('data-length'))) {
@@ -49,12 +50,12 @@
 			}
 		},
 		selectRange = function (el) {
-			var nextElement = searchElement(el),
+			var nextElement = el,
 				start = 0,
 				end;
 			if (!nextElement) {
 				return false;
-			}			
+			}
 			if(nextElement.is('input, textarea')) {
 				end = nextElement.get(0).value.length;
 				if (nextElement.setSelectionRange) {
@@ -76,31 +77,43 @@
 				e = window.event;
 			}
 			var oSelf = this;
-			if (!$.inArray(e.keyCode, notAllowKeys)) {
+			oSelf.maxLength = oSelf.maxLength === -1 ? parseInt($(oSelf).attr(dataLength)) : oSelf.maxLength;
+			if (inArray(e.keyCode, notAllowKeys)) {
 				if (oSelf.value.length < oSelf.maxLength) {
 					return false;		
 				}
 			} else {
-				if (oSelf.value.length < parseInt($(oSelf).attr('data-length'))) {
+				if (oSelf.value.length < oSelf.maxLength) {
 					return false;
 				}
-				else if (oSelf.value.length === parseInt($(oSelf).attr('data-length'))) {
-					selectRange(parseInt($(oSelf).attr('data-tab')) + 1);
+				else if (oSelf.value.length === oSelf.maxLength) {
+					selectRange(searchNextElement(oSelf));
 				}
 			}
 		},
-		searchElement = function (el) {
-			return  $('[data-tab="' + el + '"]');
+		inArray = function(obj, array) {
+				return $.inArray(obj, array) === -1 ? false : true;
+		},
+		each = function (array, callback) {
+			for(var i = 0; i < array.length; i++) {
+				callback(i, $(array[i]));
+			}
+		},
+		searchElement = function (index) {
+			return  $('[' + dataTab + '="' + index + '"]');
+		},
+		searchNextElement = function(el) {
+			return searchElement(parseInt($(el).attr(dataTab)) + 1);
 		},
 		init = function() {
-			for(var i = 0; i < elements.length; i++) {
-				elementHelper = $(elements[i]);
-				elementHelper.keyup(eventKeyUp);
-				if(elementHelper.is('input')) {
-					elementHelper.attr('maxlength', elementHelper.attr('data-length'));
-					elementHelper.attr('autocomplete','off');
+			each(elements, function(i, el) {
+				el.keyup(eventKeyUp);
+				if(el.is('input')) {
+					el.attr('maxlength', el.attr(dataLength));
+					el.attr('autocomplete','off');
 				}
-			}
+			});
+			
 			if(options.autoFocus) {
 				searchElement(0).focus();
 			}
