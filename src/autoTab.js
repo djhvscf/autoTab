@@ -33,8 +33,10 @@
  */
 
 ;(function($) {	
-	$.autoTab = function() {
-		var elements = $('[data-tab]').not('body'),
+	$.autoTab = function(options) {
+		var defaults = {autoFocus: false},
+		options = $.extend(defaults, options),
+		elements = $('[data-tab]').not('body'),
 		elementHelper = null,
         notAllowKeys = [9, 16, 37, 38, 39, 40],
 		imposeMaxLength = function (textArea) {
@@ -47,7 +49,7 @@
 			}
 		},
 		selectRange = function (el) {
-			var nextElement = $('[data-tab="' + el + '"]'),
+			var nextElement = searchElement(el),
 				start = 0,
 				end;
 			if (!nextElement) {
@@ -86,16 +88,24 @@
 					selectRange(parseInt($(oSelf).attr('data-tab')) + 1);
 				}
 			}
+		},
+		searchElement = function (el) {
+			return  $('[data-tab="' + el + '"]');
+		},
+		init = function() {
+			for(var i = 0; i < elements.length; i++) {
+				elementHelper = $(elements[i]);
+				elementHelper.keyup(eventKeyUp);
+				if(elementHelper.is('input')) {
+					elementHelper.attr('maxlength', elementHelper.attr('data-length'));
+					elementHelper.attr('autocomplete','off');
+				}
+			}
+			if(options.autoFocus) {
+				searchElement(0).focus();
+			}
 		};
 		
-		for(var i = 0; i < elements.length; i++) {
-			elementHelper = $(elements[i]);
-			elementHelper.keyup(eventKeyUp);
-			if(elementHelper.is('input')) {
-				elementHelper.attr('maxlength', elementHelper.attr('data-length'));
-				elementHelper.attr('autocomplete','off');
-			}
-		}
-		elements[0].focus();
+		init();
     };
 })(jQuery);

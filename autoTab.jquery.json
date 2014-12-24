@@ -1,6 +1,6 @@
 {
     "name": "autoTab",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "title": "autoTab",
     "description": "A jQuery Plugin that allows font responsive",
     "author": {
@@ -15,7 +15,7 @@
         }
     ],
     "dependencies": {
-        "jquery": ">=1.7"
+        "jquery": ">=1.8"
     },
     "keywords": ["autotab.jquery"],
     "homepage": "https://github.com/djhvscf/autoTab",

@@ -3,6 +3,15 @@ A jQuery plugin that allows the auto tab between inputs and text areas. It is be
 
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
+## Current version
+* v1.2.0 `24/Dic/2014`
+
+## Bugs & Enhancements (next version)
+
+## Release history
+* v1.2.0 `24/Dic/2014`
+* v1.0.0 `23/Dic/2014`
+
 ## Dependencies
 This plugin has these dependencies
 
@@ -28,7 +37,7 @@ $(function() {
 ```
 
 **Parameters**   
-This plugin is not receiving parameters.
+* autoFocus: If you want that the element with `data-tab="0"` has the focus
 
 **Demo:** [http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html](http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html)
 
