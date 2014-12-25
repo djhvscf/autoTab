@@ -7,7 +7,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * v1.3.0 `24/Dic/2014`
 
 ## Bugs & Enhancements (next version)
-* Include buttons and others DOM elements
+* Include others DOM elements
 
 ## Release history
 * v1.3.0 `24/Dic/2014`

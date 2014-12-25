@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v1.3.0
+ * @version: v1.3.3
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *
@@ -40,15 +40,7 @@
 		dataTab = 'data-tab',
 		elements = $.makeArray($('[' + dataTab + ']').not('body')),
         notAllowKeys = [9, 16, 37, 38, 39, 40],
-		imposeMaxLength = function (textArea) {
-			if (textArea.value.length <=  parseInt($(textArea).attr('data-length'))) {
-				textArea.value = textArea.value.substr(0, parseInt($(textArea).attr('data-length')));
-				return true;
-			}
-			else {
-				return false;
-			}
-		},
+		allowElements = 'input, textarea',
 		selectRange = function (el) {
 			var nextElement = el,
 				start = 0,
@@ -56,14 +48,14 @@
 			if (!nextElement) {
 				return false;
 			}
-			if(nextElement.is('input, textarea')) {
+			if(nextElement.is(allowElements)) {
 				end = nextElement.get(0).value.length;
 				if (nextElement.setSelectionRange) {
 					nextElement.setSelectionRange(start, end);
 				} else if (nextElement.createTextRange) {
 					var range = nextElement.createTextRange();
 					range.moveStart("character", start);
-					range.moveEnd("character", end - nextElement.value.length);
+					range.moveEnd("character", end - nextElement.get(0).value.length);
 					range.select();
 				}
 				nextElement.focus();
@@ -92,7 +84,10 @@
 			}
 		},
 		inArray = function(obj, array) {
-				return $.inArray(obj, array) === -1 ? false : true;
+			return $.inArray(obj, array) === -1 ? false : true;
+		},
+		isNumeric = function(number) {
+			return $.isNumeric(number);
 		},
 		each = function (array, callback) {
 			for(var i = 0; i < array.length; i++) {
@@ -105,13 +100,24 @@
 		searchNextElement = function(el) {
 			return searchElement(parseInt($(el).attr(dataTab)) + 1);
 		},
+		error = function(message) {
+			$.error(message);
+		},
+		isValidElement = function(el) {
+			if(!el.is(allowElements)) {
+				error('The element has to be input or textarea');
+			}else if(!isNumeric(el.attr(dataTab))) {
+				error('The element has an invalid property. The data-tab is not valid. Element Id = ' + el.get(0).id);
+			}else if(!isNumeric(el.attr(dataLength))) {
+				error('The element has an invalid property. The data-length is not valid. Element Id = ' + el.get(0).id);
+			}
+		},
 		init = function() {
 			each(elements, function(i, el) {
+				isValidElement(el);
 				el.keyup(eventKeyUp);
-				if(el.is('input')) {
-					el.attr('maxlength', el.attr(dataLength));
-					el.attr('autocomplete','off');
-				}
+				el.attr('maxlength', el.attr(dataLength));
+				el.attr('autocomplete','off');
 			});
 			
 			if(options.autoFocus) {

@@ -1,5 +1,10 @@
 ## ChangeLog
 
+### 1.3.3
+* Delete a function never used
+* Added the function `isValidElement` to validate if the elements are valid.
+* Delete never used validation
+
 ### 1.3.0
 
 * Added the function `each` and `inArray`
