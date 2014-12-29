@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v1.4.0
+ * @version: v1.4.2
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *
@@ -41,8 +41,6 @@
 		elements = $.makeArray($('[' + dataTab + ']').not('body')),
 		notAllowKeys = [9, 16, 37, 38, 39, 40],
 		allowElements = 'input, textarea',
-		focusStyle = document.createElement('style'),
-		inputStyle = document.createElement('style')
 		selectRange = function (el) {
 			var nextElement = el,
 				start = 0,
@@ -106,6 +104,9 @@
 			$.error(message);
 		},
 		initStyle = function() {
+			var focusStyle = document.createElement('style'),
+				inputStyle = document.createElement('style');
+			
 			inputStyle.type = 'text/css';
 			inputStyle.innerHTML = 'input[type=text], textarea ' + 
 								'{transition: all 0.30s ease-in-out;' +
@@ -119,8 +120,7 @@
 								'padding: 3px 0px 3px 3px;' +
 								'margin: 5px 1px 3px 0px;' +
 								'border: 1px solid rgba(81, 203, 238, 1); }';
-			$('html > head').append(inputStyle);
-			$('html > head').append(focusStyle);
+			$('html > head').append(inputStyle, focusStyle);
 		},
 		isValidElement = function(el) {
 			if(!el.is(allowElements)) {

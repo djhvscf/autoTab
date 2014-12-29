@@ -1,5 +1,9 @@
 ## ChangeLog
 
+### 1.4.2
+* Change the initialization of style variables
+* Delete a `.append` unnecessary
+
 ### 1.4.0
 * Added the option `addStyle` to apply or not the default style to inputs and textareas
 * Code clean up
