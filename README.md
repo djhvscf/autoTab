@@ -4,12 +4,13 @@ A jQuery plugin that allows the auto tab between inputs and text areas. It is be
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Current version
-* v1.4.0 `28/Dic/2014`
+* v1.4.2 `29/Dic/2014`
 
 ## Bugs & Enhancements (next version)
 * Include others DOM elements
 
 ## Release history
+* v1.4.2 `29/Dic/2014`
 * v1.4.0 `28/Dic/2014`
 * v1.3.0 `24/Dic/2014`
 * v1.2.0 `24/Dic/2014`
