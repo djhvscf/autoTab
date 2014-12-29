@@ -1,5 +1,9 @@
 ## ChangeLog
 
+### 1.4.0
+* Added the option `addStyle` to apply or not the default style to inputs and textareas
+* Code clean up
+
 ### 1.3.3
 * Delete a function never used
 * Added the function `isValidElement` to validate if the elements are valid.

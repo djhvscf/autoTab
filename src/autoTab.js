@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v1.3.3
+ * @version: v1.4.0
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *
@@ -34,13 +34,15 @@
 
 ;(function($) {	
 	$.autoTab = function(options) {
-		var defaults = {autoFocus: false},
+		var defaults = {autoFocus: false, addStyle: true},
 		options = $.extend(defaults, options),
 		dataLength = 'data-length',
 		dataTab = 'data-tab',
 		elements = $.makeArray($('[' + dataTab + ']').not('body')),
-        notAllowKeys = [9, 16, 37, 38, 39, 40],
+		notAllowKeys = [9, 16, 37, 38, 39, 40],
 		allowElements = 'input, textarea',
+		focusStyle = document.createElement('style'),
+		inputStyle = document.createElement('style')
 		selectRange = function (el) {
 			var nextElement = el,
 				start = 0,
@@ -103,13 +105,30 @@
 		error = function(message) {
 			$.error(message);
 		},
+		initStyle = function() {
+			inputStyle.type = 'text/css';
+			inputStyle.innerHTML = 'input[type=text], textarea ' + 
+								'{transition: all 0.30s ease-in-out;' +
+								'outline: none;' +
+								'padding: 3px 0px 3px 3px;' +
+								'margin: 5px 1px 3px 0px;' +
+								'border: 1px solid #DDDDDD;';
+			focusStyle.type = 'text/css';
+			focusStyle.innerHTML = 'input[type=text]:focus, textarea:focus ' +
+								'{box-shadow: 0 0 5px rgba(81, 203, 238, 1);' +
+								'padding: 3px 0px 3px 3px;' +
+								'margin: 5px 1px 3px 0px;' +
+								'border: 1px solid rgba(81, 203, 238, 1); }';
+			$('html > head').append(inputStyle);
+			$('html > head').append(focusStyle);
+		},
 		isValidElement = function(el) {
 			if(!el.is(allowElements)) {
 				error('The element has to be input or textarea');
 			}else if(!isNumeric(el.attr(dataTab))) {
-				error('The element has an invalid property. The data-tab is not valid. Element Id = ' + el.get(0).id);
+				error('Error. The element has an invalid property. The data-tab is not valid. Element Id = ' + el.get(0).id);
 			}else if(!isNumeric(el.attr(dataLength))) {
-				error('The element has an invalid property. The data-length is not valid. Element Id = ' + el.get(0).id);
+				error('Error. The element has an invalid property. The data-length is not valid. Element Id = ' + el.get(0).id);
 			}
 		},
 		init = function() {
@@ -122,6 +141,10 @@
 			
 			if(options.autoFocus) {
 				searchElement(0).focus();
+			}
+			
+			if(options.addStyle) {
+				initStyle();
 			}
 		};
 		
