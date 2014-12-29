@@ -7,8 +7,8 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * v1.4.2 `29/Dic/2014`
 
 ## Bugs & Enhancements (next version)
-* Include others DOM elements
-* Not jQuery, pure JavaScript
+* [ ] Include others DOM elements
+* [ ] Not jQuery, pure JavaScript
 
 ## Release history
 * v1.4.2 `29/Dic/2014`
