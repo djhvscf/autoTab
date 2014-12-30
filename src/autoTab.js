@@ -40,7 +40,8 @@
 		dataTab = 'data-tab',
 		notAllowKeys = [9, 16, 37, 38, 39, 40],
 		allowElements = ['input', 'textarea'],
-		elements = document.querySelectorAll('[' + dataTab + ']');
+		elements = document.querySelectorAll('[' + dataTab + ']'),
+		head = document.getElementsByTagName('head')[0];
 	
 	function extend( a, b ) {
 		for( var key in b ) { 
@@ -131,8 +132,7 @@
 	
 	function initStyle() {
 		var focusStyle = document.createElement('style'),
-			inputStyle = document.createElement('style'),
-			head = document.getElementsByTagName('head')[0];
+			inputStyle = document.createElement('style');
 		
 		inputStyle.type = 'text/css';
 		inputStyle.innerHTML = 'input[type=text], textarea ' + 
@@ -189,7 +189,6 @@
 	}
 	
 	function deleteStyle() {
-		var head = document.getElementsByTagName('head')[0];
 		head.removeChild(document.getElementById('inputStyle'));
 		head.removeChild(document.getElementById('focusStyle'));
 	}
