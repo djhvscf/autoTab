@@ -1,5 +1,8 @@
 ## ChangeLog
 
+### 1.5.0
+* Added the version of autoTab plugin in pure JavaScript
+
 ### 1.4.2
 * Change the initialization of style variables
 * Delete a `.append` unnecessary

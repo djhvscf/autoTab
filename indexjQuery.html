@@ -53,13 +53,14 @@
 		<input name="firstCombination" id="thirdCombination" type="text" data-tab="7" data-length="0">
 		<input name="firstCombination" id="firstCombination" type="text" data-tab="9" data-length="0">
 		<input name="firstCombination" id="secondCombination" type="text" data-tab="5" data-length="9">
+		<button type="button" class="btn btn-danger">Clean inputs</button>
         <a class="git" href="https://github.com/djhvscf/autoTab">Download at GitHub</a>
-        <script src="src/nojQuery/autoTab.js"></script>
+		<script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="src/jQuery/autoTab.js"></script>
 		<script>   
-	        (function() {
-				new autoTab({autoFocus: true});
-			})();
-			
+	        $(function() {                
+                $.autoTab({autoFocus: true});
+            });
         </script>
     </body>    
 </html>
