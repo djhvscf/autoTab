@@ -141,12 +141,15 @@
 							'padding: 3px 0px 3px 3px;' +
 							'margin: 5px 1px 3px 0px;' +
 							'border: 1px solid #DDDDDD;';
+		inputStyle.id = 'inputStyle';
 		focusStyle.type = 'text/css';
 		focusStyle.innerHTML = 'input[type=text]:focus, textarea:focus ' +
 							'{box-shadow: 0 0 5px rgba(81, 203, 238, 1);' +
 							'padding: 3px 0px 3px 3px;' +
 							'margin: 5px 1px 3px 0px;' +
 							'border: 1px solid rgba(81, 203, 238, 1); }';
+		focusStyle.id = 'focusStyle';
+		
 		head.appendChild(inputStyle);
 		head.appendChild(focusStyle);
 	}
@@ -161,16 +164,38 @@
 		}
 	}
 	
-	function initEvents(el, evType, fn) {
+	function initEvents(el, evType, callback) {
 		if (el.addEventListener) {
-			el.addEventListener(evType, fn);
+			el.addEventListener(evType, callback);
 		}
 		else if (el.attachEvent) {
-			el.attachEvent('on' + evType, fn);
+			el.attachEvent('on' + evType, callback);
 		}
 		else {
-			el['on' + evType] = fn;
+			el['on' + evType] = callback;
 		}
+	}
+	
+	function deleteEvents(el, evType, callback) {
+		if (el.removeEventListener) {
+			el.removeEventListener(evType, callback);
+		}
+		else if (el.detachEvent) {
+			el.detachEvent('on' + evType, callback);
+		}
+		else {
+			el['on' + evType] = undefined;
+		}
+	}
+	
+	function deleteStyle() {
+		var head = document.getElementsByTagName('head')[0];
+		head.removeChild(document.getElementById('inputStyle'));
+		head.removeChild(document.getElementById('focusStyle'));
+	}
+	
+	function deleteAttribute(el, tagName) {
+		el.removeAttribute(tagName);
 	}
 	
 	function autoTab( options ) {	
@@ -199,6 +224,21 @@
 		if(this.options.addStyle) {
 			initStyle();
 		}
+	}
+	
+	autoTab.prototype.destroy = function() {
+		each(elements, function(i, el) {
+			deleteEvents(el, 'keyup', eventKeyUp);
+			deleteAttribute(el, 'maxlength');
+			deleteAttribute(el, 'autocomplete');
+			deleteAttribute(el, dataTab);
+			deleteAttribute(el, dataLength);
+		});
+		
+		if(this.options.addStyle) {
+			deleteStyle();
+		}
+		delete window.autoTab;
 	}
 	
 	window.autoTab = autoTab;

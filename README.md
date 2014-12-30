@@ -8,8 +8,10 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Bugs & Enhancements (next version)
 * [ ] Include others DOM elements
-* [ ] Add destroy and init events
+* [X] Add destroy method
+* [ ] Add init method
 * [X] Not jQuery, pure JavaScript
+* [X] Delete the version of autoTab with jQuery dependency
 
 ## Release history
 * v1.5.0 `30/Dic/2014`

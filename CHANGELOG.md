@@ -1,20 +1,24 @@
 ## ChangeLog
 
+### 1.5.
+* Deleted the version with jQuery dependency
+* Added the destroy method
+
 ### 1.5.0
 * Added the version of autoTab plugin in pure JavaScript
 
 ### 1.4.2
-* Change the initialization of style variables
-* Delete a `.append` unnecessary
+* Changed the initialization of style variables
+* Deleted a `.append` unnecessary
 
 ### 1.4.0
 * Added the option `addStyle` to apply or not the default style to inputs and textareas
 * Code clean up
 
 ### 1.3.3
-* Delete a function never used
+* Deleted a function never used
 * Added the function `isValidElement` to validate if the elements are valid.
-* Delete never used validation
+* Deleted never used validation
 
 ### 1.3.0
 
@@ -26,10 +30,9 @@
 
 ### 1.2.0
 
-* Fix the auto focus to element with `data-tab="0"`
+* Fixed the auto focus to element with `data-tab="0"`
 * Added options. It includes the autofocus option with false as default value
 * Added the function `searchElement`
 
 ### 1.0.0
-
 * Initial release
