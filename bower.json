@@ -5,14 +5,14 @@
   "authors": [
     "djhvscf <djhv92@hotmail.com>"
   ],
-  "description": "A jQuery plugin that allows the auto tab in some input elements",
+  "description": "A plugin that allows the auto tab between inputs and text areas. It is beautiful and lightweight plugin. No jQuery.",
   "main": [
       "src/autoTab.js"
   ],
   "keywords": [
     "autoTab",
     "responsive",
-    "jquery",
+    "javaScript",
 	"plugin"
   ],
   "license": "MIT",

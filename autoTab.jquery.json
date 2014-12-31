@@ -2,7 +2,7 @@
     "name": "autoTab",
     "version": "1.5.0",
     "title": "autoTab",
-    "description": "A jQuery plugin that allows the auto tab between inputs and text areas. It is beautiful and lightweight plugin",
+    "description": "A plugin that allows the auto tab between inputs and text areas. It is beautiful and lightweight plugin. No jQuery",
     "author": {
         "name": "Dennis Heránadez Vargas",
         "email": "djhv92@hotmail.com",
@@ -15,9 +15,9 @@
         }
     ],
     "dependencies": {
-        "jquery": ">=1.8"
+        
     },
-    "keywords": ["autotab.jquery"],
+    "keywords": ["autotab.javascript"],
     "homepage": "https://github.com/djhvscf/autoTab",
     "demo": "http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html",
     "bugs": {

@@ -1,6 +1,6 @@
 ## ChangeLog
 
-### 1.5.
+### 1.x.x
 * Deleted the version with jQuery dependency
 * Added the destroy method
 
