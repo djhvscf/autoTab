@@ -289,7 +289,8 @@
 	 */
 	autoTab.prototype.options = {
 		autoFocus: false, 
-		addStyle: false
+		addStyle: false,
+		onComplete: function() {}
 	}
 
 	/**

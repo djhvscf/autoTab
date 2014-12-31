@@ -59,13 +59,17 @@
 		<script>
 			var autoTab;
 	        (function() {
-				autoTab = new autoTab({autoFocus: true});				
+				autoTab = new autoTab({autoFocus: true, onComplete: oncomp});				
 			})();
 			
 			function destroy() {
 				if(autoTab) {
 					autoTab.destroy();
 				}
+			}
+			
+			function oncomp() {
+				alert('hola');
 			}
 			
         </script>
