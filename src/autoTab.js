@@ -38,101 +38,101 @@
 
 	var dataLength = 'data-length',
 		dataTab = 'data-tab',
-		notAllowKeys = [9, 16, 37, 38, 39, 40],
-		allowElements = ['input', 'textarea'],
-		elements = document.querySelectorAll('[' + dataTab + ']'),
-		head = document.getElementsByTagName('head')[0];
+		notAllowKeys = [ 9, 16, 37, 38, 39, 40 ],
+		allowElements = [ 'input', 'textarea' ],
+		elements = document.querySelectorAll( '[' + dataTab + ']' ),
+		head = document.getElementsByTagName( 'head' )[ 0 ];
 	
 	function extend( a, b ) {
-		for( var key in b ) { 
+		for ( var key in b ) { 
 			if( b.hasOwnProperty( key ) ) {
-				a[key] = b[key];
+				a[ key ] = b[ key ];
 			}
 		}
 		return a;
 	}
 	
-	function selectRange(el) {
+	function selectRange( el ) {
 		var nextElement = el,
 			start = 0,
 			end;
-		if (!nextElement) {
+		if ( !nextElement ) {
 			return false;
 		}
-		if(is(nextElement)) {
+		if ( is( nextElement ) ) {
 			end = nextElement.value.length;
-			if (nextElement.setSelectionRange) {
+			if ( nextElement.setSelectionRange ) {
 				nextElement.setSelectionRange(start, end);
-			} else if (nextElement.createTextRange) {
+			} else if ( nextElement.createTextRange ) {
 				var range = nextElement.createTextRange();
-				range.moveStart("character", start);
-				range.moveEnd("character", end - nextElement.value.length);
+				range.moveStart( "character", start );
+				range.moveEnd( "character", end - nextElement.value.length );
 				range.select();
 			}
 			nextElement.focus();
 		}
 	}
 	
-	function eventKeyUp(e) {
-		if(!is(this)) {
+	function eventKeyUp( e ) {
+		if ( !is(this) ) {
 			return;
 		}
-		if (!e) {
+		if  ( !e ) {
 			e = window.event;
 		}
 		var oSelf = this;
-		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt(oSelf.getAttribute(dataLength)) : oSelf.maxLength;
-		if (inArray(e.keyCode, notAllowKeys)) {
-			if (oSelf.value.length < oSelf.maxLength) {
+		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
+		if ( inArray(e.keyCode, notAllowKeys) ) {
+			if ( oSelf.value.length < oSelf.maxLength ) {
 				return false;		
 			}
 		} else {
-			if (oSelf.value.length < oSelf.maxLength) {
+			if ( oSelf.value.length < oSelf.maxLength ) {
 				return false;
 			}
-			else if (oSelf.value.length === oSelf.maxLength) {
-				selectRange(searchNextElement(oSelf));
+			else if ( oSelf.value.length === oSelf.maxLength ) {
+				selectRange( searchNextElement( oSelf ) );
 			}
 		}
 	}
 	
-	function inArray(obj, array) {
-		return array.indexOf(obj) === -1 ? false : true;
+	function inArray( obj, array ) {
+		return array.indexOf( obj ) === -1 ? false : true;
 	}
 	
-	function isNumeric(number) {
-		return !isNaN(parseFloat(number)) && isFinite(number);
+	function isNumeric( number ) {
+		return !isNaN( parseFloat( number ) ) && isFinite( number );
 	}
 	
-	function each(array, callback) {
-		for(var i = 0; i < array.length; i++) {
-			callback(i, array[i]);
+	function each( array, callback ) {
+		for (var i = 0; i < array.length; i++ ) {
+			callback( i, array[ i ] );
 		}
 	}
 	
-	function searchElement(index) {
-		return  getElement('[' + dataTab + '="' + index + '"]');
+	function searchElement( index ) {
+		return  getElement( '[' + dataTab + '="' + index + '"]' );
 	}
 	
-	function searchNextElement(el) {
-		return searchElement(parseInt(el.getAttribute(dataTab)) + 1);
+	function searchNextElement( el ) {
+		return searchElement( parseInt( el.getAttribute( dataTab ) ) + 1 );
 	}
 	
-	function getElement(tagName) {
-		return document.querySelector(tagName);
+	function getElement( tagName ) {
+		return document.querySelector( tagName );
 	}
 	
-	function is(el) {
-		return inArray(el.nodeName.toLowerCase(), allowElements);
+	function is( el ) {
+		return inArray( el.nodeName.toLowerCase(), allowElements );
 	}
 	
-	function error(message) {
-		throw new Error(message);
+	function error( message ) {
+		throw new Error( message );
 	}
 	
 	function initStyle() {
-		var focusStyle = document.createElement('style'),
-			inputStyle = document.createElement('style');
+		var focusStyle = document.createElement( 'style' ),
+			inputStyle = document.createElement( 'style' );
 		
 		inputStyle.type = 'text/css';
 		inputStyle.innerHTML = 'input[type=text], textarea ' + 
@@ -150,51 +150,47 @@
 							'border: 1px solid rgba(81, 203, 238, 1); }';
 		focusStyle.id = 'focusStyle';
 		
-		head.appendChild(inputStyle);
-		head.appendChild(focusStyle);
+		head.appendChild( inputStyle );
+		head.appendChild( focusStyle );
 	}
 	
-	function isValidElement(el) {
-		if(!is(el)) {
-			error('The element has to be input or textarea');
-		}else if(!isNumeric(el.getAttribute(dataTab))) {
+	function isValidElement( el ) {
+		if ( !is( el ) ) {
+			error( 'The element has to be input or textarea' );
+		} else if ( !isNumeric( el.getAttribute( dataTab ) ) ) {
 			error('Error. The element has an invalid property. The data-tab is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id);
-		}else if(!isNumeric(el.getAttribute(dataLength))) {
+		} else if ( !isNumeric( el.getAttribute( dataLength ) ) ) {
 			error('Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id);
 		}
 	}
 	
-	function initEvents(el, evType, callback) {
-		if (el.addEventListener) {
-			el.addEventListener(evType, callback);
-		}
-		else if (el.attachEvent) {
-			el.attachEvent('on' + evType, callback);
-		}
-		else {
-			el['on' + evType] = callback;
+	function initEvents( el, evType, callback ) {
+		if ( el.addEventListener ) {
+			el.addEventListener( evType, callback );
+		} else if ( el.attachEvent ) {
+			el.attachEvent( 'on' + evType, callback );
+		} else {
+			el[ 'on' + evType ] = callback;
 		}
 	}
 	
-	function deleteEvents(el, evType, callback) {
-		if (el.removeEventListener) {
-			el.removeEventListener(evType, callback);
-		}
-		else if (el.detachEvent) {
-			el.detachEvent('on' + evType, callback);
-		}
-		else {
-			el['on' + evType] = undefined;
+	function deleteEvents( el, evType, callback ) {
+		if ( el.removeEventListener ) {
+			el.removeEventListener( evType, callback );
+		} else if ( el.detachEvent ) {
+			el.detachEvent( 'on' + evType, callback );
+		} else {
+			el[ 'on' + evType ] = undefined;
 		}
 	}
 	
 	function deleteStyle() {
-		head.removeChild(document.getElementById('inputStyle'));
-		head.removeChild(document.getElementById('focusStyle'));
+		head.removeChild( document.getElementById( 'inputStyle' ) );
+		head.removeChild( document.getElementById( 'focusStyle' ) );
 	}
 	
-	function deleteAttribute(el, tagName) {
-		el.removeAttribute(tagName);
+	function deleteAttribute( el, tagName ) {
+		el.removeAttribute( tagName );
 	}
 	
 	function autoTab( options ) {	
@@ -209,32 +205,32 @@
 	}
 
 	autoTab.prototype._init = function() {
-		each(elements, function(i, el) {
-			isValidElement(el);
-			initEvents(el, 'keyup', eventKeyUp);
-			el.setAttribute('maxlength', el.getAttribute(dataLength));
-			el.setAttribute('autocomplete','off');
-		});
+		each ( elements, function( i, el ) {
+			isValidElement( el );
+			initEvents( el, 'keyup', eventKeyUp );
+			el.setAttribute( 'maxlength', el.getAttribute( dataLength ) );
+			el.setAttribute( 'autocomplete','off' );
+		} );
 		
-		if(this.options.autoFocus) {
+		if ( this.options.autoFocus ) {
 			searchElement(0).focus();
 		}
 		
-		if(this.options.addStyle) {
+		if ( this.options.addStyle ) {
 			initStyle();
 		}
 	}
 	
 	autoTab.prototype.destroy = function() {
-		each(elements, function(i, el) {
-			deleteEvents(el, 'keyup', eventKeyUp);
-			deleteAttribute(el, 'maxlength');
-			deleteAttribute(el, 'autocomplete');
-			deleteAttribute(el, dataTab);
-			deleteAttribute(el, dataLength);
-		});
+		each ( elements, function( i, el ) {
+			deleteEvents( el, 'keyup', eventKeyUp );
+			deleteAttribute( el, 'maxlength' );
+			deleteAttribute( el, 'autocomplete' );
+			deleteAttribute( el, dataTab );
+			deleteAttribute( el, dataLength );
+		} );
 		
-		if(this.options.addStyle) {
+		if ( this.options.addStyle ) {
 			deleteStyle();
 		}
 		delete window.autoTab;
