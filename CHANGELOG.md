@@ -3,6 +3,7 @@
 ### 1.x.x
 * Deleted the version with jQuery dependency
 * Added the destroy method
+* Default value of `addStyle` option change to `false`
 
 ### 1.5.0
 * Added the version of autoTab plugin in pure JavaScript

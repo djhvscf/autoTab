@@ -62,7 +62,7 @@
 		if ( is( nextElement ) ) {
 			end = nextElement.value.length;
 			if ( nextElement.setSelectionRange ) {
-				nextElement.setSelectionRange(start, end);
+				nextElement.setSelectionRange( start, end );
 			} else if ( nextElement.createTextRange ) {
 				var range = nextElement.createTextRange();
 				range.moveStart( "character", start );
@@ -74,7 +74,7 @@
 	}
 	
 	function eventKeyUp( e ) {
-		if ( !is(this) ) {
+		if ( !is( this ) ) {
 			return;
 		}
 		if  ( !e ) {
@@ -82,7 +82,7 @@
 		}
 		var oSelf = this;
 		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
-		if ( inArray(e.keyCode, notAllowKeys) ) {
+		if ( inArray( e.keyCode, notAllowKeys ) ) {
 			if ( oSelf.value.length < oSelf.maxLength ) {
 				return false;		
 			}
@@ -201,7 +201,7 @@
 
 	autoTab.prototype.options = {
 		autoFocus: false, 
-		addStyle: true
+		addStyle: false
 	}
 
 	autoTab.prototype._init = function() {
