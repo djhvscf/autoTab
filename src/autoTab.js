@@ -43,6 +43,12 @@
 		elements = document.querySelectorAll( '[' + dataTab + ']' ),
 		head = document.getElementsByTagName( 'head' )[ 0 ];
 	
+	/**
+	 * Extends the properties between tow objects
+	 * @param {Object} a 
+	 * @param {Object} b
+	 * @return {Object} extended
+	 */
 	function extend( a, b ) {
 		for ( var key in b ) { 
 			if( b.hasOwnProperty( key ) ) {
@@ -52,6 +58,10 @@
 		return a;
 	}
 	
+	/**
+	 * Selects the range of the element pass by parameter
+	 * @param {DOM Element} el
+	 */
 	function selectRange( el ) {
 		var nextElement = el,
 			start = 0,
@@ -73,6 +83,10 @@
 		}
 	}
 	
+	/**
+	 * Takes the Key Up event
+	 * @param {Event} e
+	 */
 	function eventKeyUp( e ) {
 		if ( !is( this ) ) {
 			return;
@@ -96,40 +110,83 @@
 		}
 	}
 	
+	/**
+	 * Searches the object in the array passed by parameter
+	 * @param {Object} obj 
+	 * @param {Array} array
+	 * @return {Boolean} True if the object exists in the array, otherwise, false
+	 */
 	function inArray( obj, array ) {
 		return array.indexOf( obj ) === -1 ? false : true;
 	}
 	
+	/**
+	 * Checks if the parameter is a correct number
+	 * @param {Object} number
+	 * @return {Boolean} True if the object is a correct number, otherwise, false
+	 */
 	function isNumeric( number ) {
 		return !isNaN( parseFloat( number ) ) && isFinite( number );
 	}
 	
+	/**
+	 * For each item in the array passed by parameter, it will call the callback function passed by parameter too
+	 * @param {Array} array
+	 * @param {Function} callback 
+	 */
 	function each( array, callback ) {
 		for (var i = 0; i < array.length; i++ ) {
 			callback( i, array[ i ] );
 		}
 	}
 	
+	/**
+	 * Searches element with data-tab tag
+	 * @param {Number} index
+	 * @return {DOM Element} Element found
+	 */
 	function searchElement( index ) {
 		return  getElement( '[' + dataTab + '="' + index + '"]' );
 	}
 	
+	/**
+	 * Searches the next element where the focus should be
+	 * @param {DOM Element} el
+	 * @return {DOM Element} Element found
+	 */
 	function searchNextElement( el ) {
 		return searchElement( parseInt( el.getAttribute( dataTab ) ) + 1 );
 	}
 	
+	/**
+	 * Searches an element in the DOM
+	 * @param {String} tagName
+	 * @return {DOM Element} Element found
+	 */
 	function getElement( tagName ) {
 		return document.querySelector( tagName );
 	}
 	
+	/**
+	 * Validates if the element passed by parameter is valid 
+	 * @param {DOM Element} el
+	 * @return {Boolean} True if the DOM element is correct, otherwise, false
+	 */
 	function is( el ) {
 		return inArray( el.nodeName.toLowerCase(), allowElements );
 	}
 	
+	/**
+	 * Raises an error
+	 * @param {String} message 
+	 */
 	function error( message ) {
 		throw new Error( message );
 	}
 	
+	/**
+	 * Creates the styles to apply to inputs and textareas
+	 */
 	function initStyle() {
 		var focusStyle = document.createElement( 'style' ),
 			inputStyle = document.createElement( 'style' );
@@ -154,6 +211,10 @@
 		head.appendChild( focusStyle );
 	}
 	
+	/**
+	 * Validates if the DOM element passed by parameter is valid
+	 * @param {DOM Element} el
+	 */
 	function isValidElement( el ) {
 		if ( !is( el ) ) {
 			error( 'The element has to be input or textarea' );
@@ -164,6 +225,12 @@
 		}
 	}
 	
+	/**
+	 * Initializes the events for each element
+	 * @param {DOM Element} el
+	 * @param {String} evType
+	 * @param {Function} callback
+	 */
 	function initEvents( el, evType, callback ) {
 		if ( el.addEventListener ) {
 			el.addEventListener( evType, callback );
@@ -174,6 +241,12 @@
 		}
 	}
 	
+	/**
+	 * Deletes the events for each element
+	 * @param {DOM Element} el
+	 * @param {String} evType
+	 * @param {Function} callback
+	 */
 	function deleteEvents( el, evType, callback ) {
 		if ( el.removeEventListener ) {
 			el.removeEventListener( evType, callback );
@@ -184,26 +257,44 @@
 		}
 	}
 	
+	/**
+	 * Deletes the style added by this plugin
+	 */
 	function deleteStyle() {
 		head.removeChild( document.getElementById( 'inputStyle' ) );
 		head.removeChild( document.getElementById( 'focusStyle' ) );
 	}
 	
+	/**
+	 * Deletes a specific attribute of the element passed by parameter
+	 * @param {DOM Element} el
+	 * @param {String} tagName
+	 */
 	function deleteAttribute( el, tagName ) {
 		el.removeAttribute( tagName );
 	}
 	
+	/**
+	 * autoTab class
+	 * @param {Object} options
+	 */
 	function autoTab( options ) {	
 		this.options = extend( {}, this.options );
 		extend( this.options, options );
 		this._init();
 	}
 
+	/**
+	 * Options
+	 */
 	autoTab.prototype.options = {
 		autoFocus: false, 
 		addStyle: false
 	}
 
+	/**
+	 * Initializes the plugin
+	 */
 	autoTab.prototype._init = function() {
 		each ( elements, function( i, el ) {
 			isValidElement( el );
@@ -221,6 +312,9 @@
 		}
 	}
 	
+	/**
+	 * Destroys the plugin
+	 */
 	autoTab.prototype.destroy = function() {
 		each ( elements, function( i, el ) {
 			deleteEvents( el, 'keyup', eventKeyUp );
@@ -236,6 +330,9 @@
 		delete window.autoTab;
 	}
 	
+	/**
+	 * Adds the plugin to namespace
+	 */
 	window.autoTab = autoTab;
 
 } )( window );

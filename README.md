@@ -10,6 +10,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * [ ] Include others DOM elements
 * [ ] Include onComplete event
 * [ ] Include onChange event
+* [X] Code documentation
 * [X] Add destroy method
 * [X] Not jQuery, pure JavaScript
 * [X] Delete the version of autoTab with jQuery dependency
