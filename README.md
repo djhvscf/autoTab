@@ -47,10 +47,10 @@ this property will be the `maxlength` property in each input element and it help
 **Parameters**   
 * `autoFocus`: If you want that the element with `data-tab="0"` has the focus
 * `addStyle`: If you want to apply the default style of inputs and textareas, you have to set `true`
-* `onComplete`: If you want to call a function when all the inputs are already "tab-ed", you have to pass the callback function
+* `onComplete`: If you want to call a function when all the inputs are already "tab-ed", you have to pass the callback function in this parameter
 
 **Methods**
-* `Destroy`: If you call this method the plugin will be delete and all the styles and events associated with it.
+* `destroy`: If you call this method the plugin will be delete and all the styles and events associated with it.
 
 **Demo:** [http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html](http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html)
 
