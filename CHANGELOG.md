@@ -4,6 +4,7 @@
 * Deleted the version with jQuery dependency
 * Added the destroy method
 * Default value of `addStyle` option changed to `false`
+* Added tje onComplete event
 
 ### 1.5.0
 * Added the version of autoTab plugin in pure JavaScript

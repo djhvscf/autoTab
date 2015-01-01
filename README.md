@@ -8,7 +8,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Bugs & Enhancements (next version)
 * [ ] Include others DOM elements
-* [ ] Include onComplete event
+* [X] Include onComplete event
 * [ ] Include onChange event
 * [X] Code documentation
 * [X] Add destroy method

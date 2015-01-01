@@ -67,7 +67,8 @@
 			start = 0,
 			end;
 		if ( !nextElement ) {
-			return false;
+			window.autoTab.options.onComplete.call();
+			return;
 		}
 		if ( is( nextElement ) ) {
 			end = nextElement.value.length;
