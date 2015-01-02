@@ -41,7 +41,8 @@
 		notAllowKeys = [ 9, 16, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea' ],
 		elements = document.querySelectorAll( '[' + dataTab + ']' ),
-		head = document.getElementsByTagName( 'head' )[ 0 ];
+		head = document.getElementsByTagName( 'head' )[ 0 ],
+		emptyFunction = function() { };
 	
 	/**
 	 * Extends the properties between tow objects
@@ -318,8 +319,8 @@
 	autoTab.prototype.options = {
 		autoFocus: false, 
 		addStyle: false,
-		onComplete: function() {},
-		onChanged: function() {},
+		onComplete: emptyFunction,
+		onChanged: emptyFunction,
 		recursive: false
 	}
 
