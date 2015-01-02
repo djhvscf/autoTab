@@ -9,11 +9,13 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 ## Bugs & Enhancements (next version)
 * [ ] Include others DOM elements
 * [X] Include onComplete event
-* [ ] Include onChange event
+* [X] Include onChange event
 * [X] Code documentation
 * [X] Add destroy method
 * [X] Not jQuery, pure JavaScript
 * [X] Delete the version of autoTab with jQuery dependency
+* [X] Order the functions in logical order
+* [X] Validate parameters
 
 ## Release history
 * v1.5.0 `30/Dic/2014`
