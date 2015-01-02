@@ -10,6 +10,7 @@
 * Function that validates the parameters passed
 * Added the recursive option
 * Change the parameters section to table
+* Added new variable `emptyFunction`
 
 ### 1.5.0
 * Added the version of autoTab plugin in pure JavaScript

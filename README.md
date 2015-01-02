@@ -60,7 +60,10 @@ this property will be the `maxlength` property in each input element and it help
 
 
 **Methods**
-* `destroy`: If you call this method the plugin will be delete and all the styles and events associated with it.
+
+| Method | Description |
+| ----------| ----------- |
+| `destroy` | If you call this method the plugin will be delete and all the styles and events associated with it |
 
 **Demo:** [http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html](http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html)
 
