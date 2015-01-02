@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v1.5.0
+ * @version: v1.6.0
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *

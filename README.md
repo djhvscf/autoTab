@@ -4,7 +4,7 @@ A plugin that allows the auto tab between inputs and text areas. It is beautiful
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Current version
-* **v1.5.0** `30/Dic/2014`
+* **v1.6.0** `02/Jan/2015`
 
 ## Bugs & Enhancements (next version)
 * [X] Include recursive option
@@ -16,12 +16,13 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * [X] Delete the version of autoTab with jQuery dependency
 * [X] Order the functions in logical order
 * [X] Validate parameters
-* [ ] Update the `readme` with some good format
+* [X] Update the `readme` with some good format
 
 ## Release history
 
 | Version Number  | Date          |
 | --------------- | -----------   |
+| v1.6.0		  |	`02/Jan/2015` |
 | v1.5.0		  |	`30/Dic/2014` |
 | v1.4.2		  |	`29/Dic/2014` |
 | v1.4.0		  |	`28/Dic/2014` |

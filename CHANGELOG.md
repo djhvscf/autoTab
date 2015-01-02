@@ -1,6 +1,6 @@
 ## ChangeLog
 
-### 1.x.x
+### 1.6.0
 * Deleted the version with jQuery dependency
 * Added the destroy method
 * Default value of `addStyle` option changed to `false`
