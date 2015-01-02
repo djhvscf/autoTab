@@ -7,16 +7,6 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * **v1.6.0** `02/Jan/2015`
 
 ## Bugs & Enhancements (next version)
-* [X] Include recursive option
-* [X] Include onComplete event
-* [X] Include onChange event
-* [X] Code documentation
-* [X] Add destroy method
-* [X] Not jQuery, pure JavaScript
-* [X] Delete the version of autoTab with jQuery dependency
-* [X] Order the functions in logical order
-* [X] Validate parameters
-* [X] Update the `readme` with some good format
 
 ## Release history
 
