@@ -250,20 +250,23 @@
 	 */
 	function selectRange( el ) {
 		var nextElement = el,
-			start = 0,
+			start,
 			end;
 		if ( !nextElement ) {
 			window.autoTab.options.onComplete.call();
+			if ( window.autoTab.options.recursive ) {
+				searchElement(0).focus();
+			}
 			return;
 		}
 		if ( is( nextElement ) ) {
-			end = nextElement.value.length;
+			start = end = nextElement.value.length;
 			if ( nextElement.setSelectionRange ) {
 				nextElement.setSelectionRange( start, end );
 			} else if ( nextElement.createTextRange ) {
 				var range = nextElement.createTextRange();
 				range.moveStart( 'character', start );
-				range.moveEnd( 'character', end - nextElement.value.length );
+				range.moveEnd( 'character', end );
 				range.select();
 			}
 			nextElement.focus();
@@ -316,7 +319,8 @@
 		autoFocus: false, 
 		addStyle: false,
 		onComplete: function() {},
-		onChanged: function() {}
+		onChanged: function() {},
+		recursive: false
 	}
 
 	/**

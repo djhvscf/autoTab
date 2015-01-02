@@ -16,6 +16,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * [X] Delete the version of autoTab with jQuery dependency
 * [X] Order the functions in logical order
 * [X] Validate parameters
+* [ ] Update the `readme` with some good format
 
 ## Release history
 * v1.5.0 `30/Dic/2014`
@@ -47,10 +48,16 @@ this property will be the `maxlength` property in each input element and it help
 ```
 
 **Parameters**   
-* `autoFocus`: If you want that the element with `data-tab="0"` has the focus
-* `addStyle`: If you want to apply the default style of inputs and textareas, you have to set `true`
-* `onComplete`: If you want to call a function when all the inputs are already "tab-ed", you have to pass the callback function in this parameter
-* `onChanged`: Returns a callback with the event where you can access to key pressed
+
+| Parameter | Description | Default |
+| ----------|:-----------:| -------:|
+| `autoFocus` | True if you want that the element with `data-tab="0"` has the focus, otherwise, false | `false` |
+| `addStyle`  | True if you want to apply the default style of inputs and textareas, otherwise, false | `false` |
+| `onComplete` | True if you want to call a function when all the inputs are already "tab-ed", you have to pass the callback function in this parameter | `function(){}` |
+| `onChanged` | Returns a callback with the `event`, it has the information where you can access to key pressed | `function(){}` |
+| `recursive` | True if you want that once the inputs are filled, the plugin start again, otherwise, false | `false` |
+
+
 
 **Methods**
 * `destroy`: If you call this method the plugin will be delete and all the styles and events associated with it.
