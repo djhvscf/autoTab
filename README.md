@@ -4,7 +4,7 @@ A plugin that allows the auto tab between inputs and text areas. It is beautiful
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Current version
-* v1.5.0 `30/Dic/2014`
+* **v1.5.0** `30/Dic/2014`
 
 ## Bugs & Enhancements (next version)
 * [X] Include recursive option
@@ -19,12 +19,15 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * [ ] Update the `readme` with some good format
 
 ## Release history
-* v1.5.0 `30/Dic/2014`
-* v1.4.2 `29/Dic/2014`
-* v1.4.0 `28/Dic/2014`
-* v1.3.0 `24/Dic/2014`
-* v1.2.0 `24/Dic/2014`
-* v1.0.0 `23/Dic/2014`
+
+| Version Number  | Date          |
+| --------------- | -----------   |
+| v1.5.0		  |	`30/Dic/2014` |
+| v1.4.2		  |	`29/Dic/2014` |
+| v1.4.0		  |	`28/Dic/2014` |
+| v1.3.0		  |	`24/Dic/2014` |
+| v1.2.0		  |	`24/Dic/2014` |
+| v1.0.0		  |	`23/Dic/2014` |
 
 ## Dependencies
 * In this moment this plugin doesn't have dependencies
