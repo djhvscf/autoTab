@@ -7,7 +7,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * v1.5.0 `30/Dic/2014`
 
 ## Bugs & Enhancements (next version)
-* [X] Recursive tab
+* [X] Include recursive option
 * [X] Include onComplete event
 * [X] Include onChange event
 * [X] Code documentation
