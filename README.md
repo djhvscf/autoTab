@@ -50,6 +50,7 @@ this property will be the `maxlength` property in each input element and it help
 * `autoFocus`: If you want that the element with `data-tab="0"` has the focus
 * `addStyle`: If you want to apply the default style of inputs and textareas, you have to set `true`
 * `onComplete`: If you want to call a function when all the inputs are already "tab-ed", you have to pass the callback function in this parameter
+* `onChanged`: Returns a callback with the event where you can access to key pressed
 
 **Methods**
 * `destroy`: If you call this method the plugin will be delete and all the styles and events associated with it.
