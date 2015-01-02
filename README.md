@@ -7,7 +7,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * v1.5.0 `30/Dic/2014`
 
 ## Bugs & Enhancements (next version)
-* [ ] Include others DOM elements
+* [ ] Recursive tab
 * [X] Include onComplete event
 * [X] Include onChange event
 * [X] Code documentation
