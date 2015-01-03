@@ -59,7 +59,11 @@
 		<script>
 			var autoTab;
 	        (function() {
+<<<<<<< .mine
 				autoTab = new autoTab({autoFocus: true, addStyle: true, onComplete: oncomp});				
+=======
+				autoTab = new autoTab({autoFocus: true, recursive: false});				
+>>>>>>> .theirs
 			})();
 			
 			function destroy() {
@@ -68,8 +72,8 @@
 				}
 			}
 			
-			function oncomp() {
-				alert('hola');
+			function oncomp(e) {
+				console.log(e.keyCode);
 			}
 			
         </script>

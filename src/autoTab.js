@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v1.5.0
+ * @version: v1.6.0
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *
@@ -41,7 +41,8 @@
 		notAllowKeys = [ 9, 16, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea' ],
 		elements = document.querySelectorAll( '[' + dataTab + ']' ),
-		head = document.getElementsByTagName( 'head' )[ 0 ];
+		head = document.getElementsByTagName( 'head' )[ 0 ],
+		emptyFunction = function() { };
 	
 	/**
 	 * Extends the properties between tow objects
@@ -56,59 +57,6 @@
 			}
 		}
 		return a;
-	}
-	
-	/**
-	 * Selects the range of the element pass by parameter
-	 * @param {DOM Element} el
-	 */
-	function selectRange( el ) {
-		var nextElement = el,
-			start = 0,
-			end;
-		if ( !nextElement ) {
-			window.autoTab.options.onComplete.call();
-			return;
-		}
-		if ( is( nextElement ) ) {
-			end = nextElement.value.length;
-			if ( nextElement.setSelectionRange ) {
-				nextElement.setSelectionRange( start, end );
-			} else if ( nextElement.createTextRange ) {
-				var range = nextElement.createTextRange();
-				range.moveStart( "character", start );
-				range.moveEnd( "character", end - nextElement.value.length );
-				range.select();
-			}
-			nextElement.focus();
-		}
-	}
-	
-	/**
-	 * Takes the Key Up event
-	 * @param {Event} e
-	 */
-	function eventKeyUp( e ) {
-		if ( !is( this ) ) {
-			return;
-		}
-		if  ( !e ) {
-			e = window.event;
-		}
-		var oSelf = this;
-		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
-		if ( inArray( e.keyCode, notAllowKeys ) ) {
-			if ( oSelf.value.length < oSelf.maxLength ) {
-				return false;		
-			}
-		} else {
-			if ( oSelf.value.length < oSelf.maxLength ) {
-				return false;
-			}
-			else if ( oSelf.value.length === oSelf.maxLength ) {
-				selectRange( searchNextElement( oSelf ) );
-			}
-		}
 	}
 	
 	/**
@@ -228,6 +176,28 @@
 			error('Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id);
 		}
 	}
+		
+	/**
+	 * Validates if the parameters passed are correct
+	 * @param {Object} params
+	 */
+	function isValidParameters( params ) {
+		if ( typeof params.autoFocus !== 'boolean' && typeof params.autoFocus !== 'undefined' ) {
+			error( 'Error. You must pass a boolean in the autofocus parameter' );
+		}
+		
+		if ( typeof params.addStyle !== 'boolean' && typeof params.addStyle !== 'undefined' ) {
+			error( 'Error. You must pass a boolean in the addStyle parameter' );
+		}
+		
+		if ( typeof params.onComplete !== 'function' && typeof params.onComplete !== 'undefined' ) {
+			error( 'Error. You must pass a function in the onComplete parameter' );
+		}
+		
+		if ( typeof params.onChanged !== 'function' && typeof params.onChanged !== 'undefined' ) {
+			error( 'Error. You must pass a boolean in the onChanged parameter' );
+		}
+	}
 	
 	/**
 	 * Initializes the events for each element
@@ -279,10 +249,68 @@
 	}
 	
 	/**
+	 * Selects the range of the element pass by parameter
+	 * @param {DOM Element} el
+	 */
+	function selectRange( el ) {
+		var nextElement = el,
+			start,
+			end;
+		if ( !nextElement ) {
+			window.autoTab.options.onComplete.call();
+			if ( window.autoTab.options.recursive ) {
+				searchElement(0).focus();
+			}
+			return;
+		}
+		if ( is( nextElement ) ) {
+			start = end = nextElement.value.length;
+			if ( nextElement.setSelectionRange ) {
+				nextElement.setSelectionRange( start, end );
+			} else if ( nextElement.createTextRange ) {
+				var range = nextElement.createTextRange();
+				range.moveStart( 'character', start );
+				range.moveEnd( 'character', end );
+				range.select();
+			}
+			nextElement.focus();
+		}
+	}
+	
+	/**
+	 * Takes the Key Up event
+	 * @param {Event} e
+	 */
+	function eventKeyUp( e ) {
+		if ( !is( this ) ) {
+			return;
+		}
+		if  ( !e ) {
+			e = window.event;
+		}
+		var oSelf = this;
+		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
+		window.autoTab.options.onChanged.call( this, e );
+		if ( inArray( e.keyCode, notAllowKeys ) ) {
+			if ( oSelf.value.length < oSelf.maxLength ) {
+				return false;		
+			}
+		} else {
+			if ( oSelf.value.length < oSelf.maxLength ) {
+				return false;
+			}
+			else if ( oSelf.value.length === oSelf.maxLength ) {
+				selectRange( searchNextElement( oSelf ) );
+			}
+		}
+	}	
+	
+	/**
 	 * autoTab class
 	 * @param {Object} options
 	 */
-	function autoTab( options ) {	
+	function autoTab( options ) {
+		isValidParameters( options );
 		this.options = extend( {}, this.options );
 		extend( this.options, options );
 		this._init();
@@ -294,7 +322,9 @@
 	autoTab.prototype.options = {
 		autoFocus: false, 
 		addStyle: false,
-		onComplete: function() {}
+		onComplete: emptyFunction,
+		onChanged: emptyFunction,
+		recursive: false
 	}
 
 	/**

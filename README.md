@@ -4,24 +4,21 @@ A plugin that allows the auto tab between inputs and text areas. It is beautiful
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Current version
-* v1.5.0 `30/Dic/2014`
+* **v1.6.0** `02/Jan/2015`
 
 ## Bugs & Enhancements (next version)
-* [ ] Include others DOM elements
-* [X] Include onComplete event
-* [ ] Include onChange event
-* [X] Code documentation
-* [X] Add destroy method
-* [X] Not jQuery, pure JavaScript
-* [X] Delete the version of autoTab with jQuery dependency
 
 ## Release history
-* v1.5.0 `30/Dic/2014`
-* v1.4.2 `29/Dic/2014`
-* v1.4.0 `28/Dic/2014`
-* v1.3.0 `24/Dic/2014`
-* v1.2.0 `24/Dic/2014`
-* v1.0.0 `23/Dic/2014`
+
+| Version Number  | Date          |
+| --------------- | -----------   |
+| v1.6.0		  |	`02/Jan/2015` |
+| v1.5.0		  |	`30/Dic/2014` |
+| v1.4.2		  |	`29/Dic/2014` |
+| v1.4.0		  |	`28/Dic/2014` |
+| v1.3.0		  |	`24/Dic/2014` |
+| v1.2.0		  |	`24/Dic/2014` |
+| v1.0.0		  |	`23/Dic/2014` |
 
 ## Dependencies
 * In this moment this plugin doesn't have dependencies
@@ -45,12 +42,22 @@ this property will be the `maxlength` property in each input element and it help
 ```
 
 **Parameters**   
-* `autoFocus`: If you want that the element with `data-tab="0"` has the focus
-* `addStyle`: If you want to apply the default style of inputs and textareas, you have to set `true`
-* `onComplete`: If you want to call a function when all the inputs are already "tab-ed", you have to pass the callback function in this parameter
+
+| Parameter | Description | Default |
+| ----------| ----------- | ------- |
+| `autoFocus` | True if you want that the element with `data-tab="0"` has the focus, otherwise, false | `false` |
+| `addStyle`  | True if you want to apply the default style of inputs and textareas, otherwise, false | `false` |
+| `onComplete` | True if you want to call a function when all the inputs are already "tab-ed", you have to pass the callback function in this parameter | `empty` |
+| `onChanged` | Returns a callback with the `event`, it has the information where you can access to key pressed | `empty` |
+| `recursive` | True if you want that once the inputs are filled, the plugin start again, otherwise, false | `false` |
+
+
 
 **Methods**
-* `destroy`: If you call this method the plugin will be delete and all the styles and events associated with it.
+
+| Method | Description |
+| ----------| ----------- |
+| `destroy` | If you call this method the plugin will be delete and all the styles and events associated with it |
 
 **Demo:** [http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html](http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html)
 

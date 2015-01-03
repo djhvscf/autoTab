@@ -1,10 +1,16 @@
 ## ChangeLog
 
-### 1.x.x
+### 1.6.0
 * Deleted the version with jQuery dependency
 * Added the destroy method
 * Default value of `addStyle` option changed to `false`
-* Added tje onComplete event
+* Added the onComplete event
+* Added the onChanged event
+* Order the functions in logical order
+* Function that validates the parameters passed
+* Added the recursive option
+* Change the parameters section to table
+* Added new variable `emptyFunction`
 
 ### 1.5.0
 * Added the version of autoTab plugin in pure JavaScript
