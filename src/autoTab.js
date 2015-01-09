@@ -171,9 +171,9 @@
 		if ( !is( el ) ) {
 			error( 'The element has to be input or textarea' );
 		} else if ( !isNumeric( el.getAttribute( dataTab ) ) ) {
-			error('Error. The element has an invalid property. The data-tab is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id);
+			error( 'Error. The element has an invalid property. The data-tab is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
 		} else if ( !isNumeric( el.getAttribute( dataLength ) ) ) {
-			error('Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id);
+			error( 'Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
 		}
 	}
 		
