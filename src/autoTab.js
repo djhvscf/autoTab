@@ -101,7 +101,12 @@
 	 * @return {DOM Element} Element found
 	 */
 	function searchElement( index ) {
-		return getElement( '[' + dataTab + '="' + index + '"]' );
+		var el = getElement( '[' + dataTab + '="' + index + '"]' );
+		if ( el !== null && el.getAttribute( 'disabled' ) === 'disabled' ) {
+			return getElement( '[' + dataTab + '="' + parseInt( index + 1 ) + '"]' );
+		}
+		
+		return el;
 	}
 	
 	/**

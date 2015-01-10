@@ -1,5 +1,8 @@
 ## ChangeLog
 
+### 2.x.x
+* Added support to input disabled
+
 ### 2.0.0
 * Added `data-upper` tag
 * Added `data-lower` tag
