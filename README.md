@@ -53,7 +53,7 @@ this property will be the `maxlength` property in each input element and it help
 | `data-lower` | Converts the input value to lower case | No | `"true" or "false"` |
 | `data-nospace` | Not allowed the white spaces | No | `"true" or "false"` |
 | `data-format` | The format allowed in the input element | No | `"text"`, `"alpha"`/`"alphanumeric"`, `"number"`/`"numeric"`, `"hex"`/`"hexadecimal"`, `"custom"` |
-| `data-pattern` | The regular expression to evaluate the input value, if it is setted you have to set the `data-format` with `"custom"` option  | No | Regular ecpression |
+| `data-pattern` | The regular expression to evaluate the input value, if it is setted you have to set the `data-format` with `"custom"` option  | No | Regular expression |
 		
 **Parameters**   
 
