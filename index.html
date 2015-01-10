@@ -11,7 +11,7 @@
 			<h1>autoTab Demos</h1>
 			<div class="form-group">
 				<label for="firstCombination">data-length="2" & data-tab="0"</label>
-				<input name="firstCombination" id="firstCombination" type="text" data-tab="0" data-length="2" class="form-control">
+				<input name="firstCombination" id="firstCombination" type="text" data-tab="0" data-length="2" data-upper="true" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="secondCombination">data-length="4" & data-tab="1"</label>
@@ -19,7 +19,7 @@
 			</div>
 			<div class="form-group">
 				<label for="sevenCombination">data-length="3" & data-tab="6"</label>
-				<input name="sevenCombination" id="secondCombination" type="text" data-tab="6" data-length="3" class="form-control">
+				<input name="sevenCombination" id="secondCombination" type="text" data-tab="6" data-length="3" data-nospace="true" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="thirdCombination">data-length="5" & data-tab="2"</label>
@@ -27,11 +27,11 @@
 			</div>
 			<div class="form-group">
 				<label for="fifthCombination">data-length="5" & data-tab="4"</label>
-				<input name="fifthCombination" id="secondCombination" type="text" data-tab="4" data-length="5" class="form-control">
+				<input name="fifthCombination" id="secondCombination" type="text" data-tab="4" data-length="5" data-format="custom" data-pattern="[^0-9\.]"class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="fourthCombination">data-length="1" & data-tab="3"</label>
-				<input name="fourthCombination" id="secondCombination" type="text" data-tab="3" data-length="1" class="form-control">
+				<input name="fourthCombination" id="secondCombination" type="text" data-tab="3" data-length="1" data-format="number" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="textarea">data-length="8" & data-tab="7"</label>
@@ -42,6 +42,7 @@
 				<input name="sixthCombination" id="secondCombination" type="text" data-tab="5" data-length="8" class="form-control">
 			</div>
 			<button type="button" class="btn btn-danger" onclick="destroy()">Destroy</button>
+			<button type="button" class="btn btn-success" onclick="restore()">Restore</button>
         </div>
         <script src="src/autoTab.js"></script>
 		<script>
@@ -54,6 +55,16 @@
 				try {
 					if(autoTab) {
 						autoTab.destroy();
+					}
+				} catch(ex) {
+					console.log('error');
+				}
+			}
+			
+			function restore() {
+				try {
+					if(autoTab) {
+						autoTab.restore();
 					}
 				} catch(ex) {
 					console.log('error');

@@ -1,5 +1,17 @@
 ## ChangeLog
 
+### 2.0.0
+* Added `data-upper` tag
+* Added `data-lower` tag
+* Added `data-nospace` tag
+* Added `data-format` tag
+* Added `data-pattern` tag
+* Changed the Index page
+* Added `restore` method
+* Added the `enable` variable to know if the plugin is enable or not
+* Modified the validation parameters function
+* Changed the ReadMe
+
 ### 1.6.0
 * Deleted the version with jQuery dependency
 * Added the destroy method
@@ -33,7 +45,7 @@
 * Added the function `each` and `inArray`
 * Best management of `maxLength` property
 * Making an array with the input elements found
-* Added the variables `dataTab` and `dataLength` to prevent incorrect words
+* Added the variables `data-tab` and `data-length` to prevent incorrect words
 * Added the function `searchNextElement` to search the next input element
 
 ### 1.2.0

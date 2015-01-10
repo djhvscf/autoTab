@@ -4,7 +4,7 @@ A plugin that allows the auto tab between inputs and text areas. It is beautiful
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Current version
-* **v1.6.0** `02/Jan/2015`
+* **v2.0.0** `10/Jan/2015`
 
 ## Bugs & Enhancements (next version)
 
@@ -12,6 +12,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 | Version Number  | Date          |
 | --------------- | -----------   |
+| v2.0.0		  |	`10/Jan/2015` |
 | v1.6.0		  |	`02/Jan/2015` |
 | v1.5.0		  |	`30/Dic/2014` |
 | v1.4.2		  |	`29/Dic/2014` |
@@ -33,6 +34,7 @@ this property will be the `maxlength` property in each input element and it help
 
 <input name="first" id="first" type="text" data-tab="0" data-length="2">
 <input name="second" id="second" type="text" data-tab="1" data-length="2">
+<input name="third" id="third" type="text" data-tab="3" data-length="2" data-format="number">
 ```
 ```javascript
 (function() {
@@ -41,6 +43,18 @@ this property will be the `maxlength` property in each input element and it help
 })();
 ```
 
+**Data tags**
+
+| Tag | Description | Required | Data type |
+| ---------- | ----------- | ------- | ------- |
+| `data-tab` | Sets the input order | Yes | `"0" to "N"` |
+| `data-length` | The length allowed by input element | Yes | `"0" to "N"` |
+| `data-upper` | Converts the input value to upper case | No | `"true" or "false"` |
+| `data-lower` | Converts the input value to lower case | No | `"true" or "false"` |
+| `data-nospace` | Not allowed the white spaces | No | `"true" or "false"` |
+| `data-format` | The format allowed in the input element | No | `"text"`, `"alpha"`/`"alphanumeric"`, `"number"`/`"numeric"`, `"hex"`/`"hexadecimal"`, `"custom"` |
+| `data-pattern` | The regular expression to evaluate the input value, if it is setted you have to set the `data-format` with `"custom"` option  | No | Regular ecpression |
+		
 **Parameters**   
 
 | Parameter | Description | Default |
@@ -52,12 +66,12 @@ this property will be the `maxlength` property in each input element and it help
 | `recursive` | True if you want that once the inputs are filled, the plugin start again, otherwise, false | `false` |
 
 
-
 **Methods**
 
 | Method | Description |
 | ----------| ----------- |
-| `destroy` | If you call this method the plugin will be delete and all the styles and events associated with it |
+| `destroy` | If you call this method the plugin will be deleted |
+| `restore` | If you want to enable the plugin again in your page |
 
 **Demo:** [http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html](http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html)
 

@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v1.6.0
+ * @version: v2.0.0
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *
@@ -36,14 +36,20 @@
 	
 	'use strict';
 
-	var dataLength = 'data-length',
-		dataTab = 'data-tab',
+	var dataTab = 'data-tab',
+		dataLength = 'data-length',
+		dataUpperCase = 'data-upper',
+		dataLowerCase = 'data-lower',
+		dataNoSpace = 'data-nospace',
+		dataFormat = 'data-format',
+		dataPattern = 'data-pattern',
+		enable = true,
 		notAllowKeys = [ 9, 16, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea' ],
 		elements = document.querySelectorAll( '[' + dataTab + ']' ),
 		head = document.getElementsByTagName( 'head' )[ 0 ],
 		emptyFunction = function() { };
-	
+		
 	/**
 	 * Extends the properties between tow objects
 	 * @param {Object} a 
@@ -95,7 +101,7 @@
 	 * @return {DOM Element} Element found
 	 */
 	function searchElement( index ) {
-		return  getElement( '[' + dataTab + '="' + index + '"]' );
+		return getElement( '[' + dataTab + '="' + index + '"]' );
 	}
 	
 	/**
@@ -190,6 +196,10 @@
 			error( 'Error. You must pass a boolean in the addStyle parameter' );
 		}
 		
+		if ( typeof params.recursive !== 'boolean' && typeof params.recursive !== 'undefined' ) {
+			error( 'Error. You must pass a boolean in the recursive parameter' );
+		}
+		
 		if ( typeof params.onComplete !== 'function' && typeof params.onComplete !== 'undefined' ) {
 			error( 'Error. You must pass a function in the onComplete parameter' );
 		}
@@ -282,6 +292,9 @@
 	 * @param {Event} e
 	 */
 	function eventKeyUp( e ) {
+		if ( !enable ) { 
+			return;
+		}
 		if ( !is( this ) ) {
 			return;
 		}
@@ -291,6 +304,7 @@
 		var oSelf = this;
 		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
 		window.autoTab.options.onChanged.call( this, e );
+		oSelf.value = filterInputValue(oSelf, oSelf.value);
 		if ( inArray( e.keyCode, notAllowKeys ) ) {
 			if ( oSelf.value.length < oSelf.maxLength ) {
 				return false;		
@@ -303,7 +317,59 @@
 				selectRange( searchNextElement( oSelf ) );
 			}
 		}
-	}	
+	}
+	
+	/**
+	 * Modified the input value to the correct format or pattern
+	 * @param {DOM Element} oSelf
+	 * @param {String} inputValue
+	 */
+	function filterInputValue( oSelf, inputValue ) {
+		var patternHelper = null;
+		switch ( oSelf.getAttribute( dataFormat ) ) {
+            case 'text':
+                patternHelper = new RegExp( '[0-9]+', 'g' );
+                break;
+            case 'alpha':
+                patternHelper = new RegExp( '[^a-zA-Z]+', 'g' );
+                break;
+			case 'alphanumeric':
+				patternHelper = new RegExp( '[^0-9a-zA-Z]+', 'g' );
+				break;
+            case 'number':
+            case 'numeric':
+                patternHelper = new RegExp( '[^0-9]+', 'g' );
+                break;
+            case 'hex':
+            case 'hexadecimal':
+                patternHelper = new RegExp( '[^0-9A-Fa-f]+', 'g' );
+                break;
+            case 'custom':
+                patternHelper = new RegExp( oSelf.getAttribute( dataPattern ), 'g' );
+                break;
+            case 'all':
+            default:
+                break;
+        }
+		
+		if ( patternHelper !== null ) {
+            inputValue = inputValue.replace( patternHelper, '' );
+        }
+
+        if ( oSelf.getAttribute( dataNoSpace ) ) {
+            inputValue = inputValue.replace( new RegExp( '[ ]+', 'g' ), '' );
+        }
+
+        if ( oSelf.getAttribute( dataUpperCase ) ) {
+            inputValue = inputValue.toUpperCase();
+        }
+
+        if ( oSelf.getAttribute( dataLowerCase ) ) {
+            inputValue = inputValue.toLowerCase();
+        }
+		
+		return inputValue;
+	}
 	
 	/**
 	 * autoTab class
@@ -326,7 +392,7 @@
 		onChanged: emptyFunction,
 		recursive: false
 	}
-
+	
 	/**
 	 * Initializes the plugin
 	 */
@@ -355,14 +421,17 @@
 			deleteEvents( el, 'keyup', eventKeyUp );
 			deleteAttribute( el, 'maxlength' );
 			deleteAttribute( el, 'autocomplete' );
-			deleteAttribute( el, dataTab );
-			deleteAttribute( el, dataLength );
 		} );
 		
 		if ( this.options.addStyle ) {
 			deleteStyle();
 		}
-		delete window.autoTab;
+		enable = false;
+	}
+	
+	autoTab.prototype.restore = function() { 
+		enable = true;
+		this._init();
 	}
 	
 	/**
