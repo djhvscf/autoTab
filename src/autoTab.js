@@ -45,7 +45,7 @@
 		dataPattern = 'data-pattern',
 		enable = true,
 		notAllowKeys = [ 9, 16, 37, 38, 39, 40 ],
-		allowElements = [ 'input', 'textarea' ],
+		allowElements = [ 'input', 'textarea', 'select' ],
 		elements = document.querySelectorAll( '[' + dataTab + ']' ),
 		head = document.getElementsByTagName( 'head' )[ 0 ],
 		emptyFunction = function() { };
@@ -180,11 +180,14 @@
 	 */
 	function isValidElement( el ) {
 		if ( !is( el ) ) {
-			error( 'The element has to be input or textarea' );
+			error( 'The element has to be input or textarea or select' );
 		} else if ( !isNumeric( el.getAttribute( dataTab ) ) ) {
 			error( 'Error. The element has an invalid property. The data-tab is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
-		} else if ( !isNumeric( el.getAttribute( dataLength ) ) ) {
+		}
+		if ( el.nodeName.toLowerCase() !== 'select' ) {
+			if ( !isNumeric( el.getAttribute( dataLength ) ) ) {
 			error( 'Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
+			}
 		}
 	}
 		
@@ -227,22 +230,6 @@
 			el.attachEvent( 'on' + evType, callback );
 		} else {
 			el[ 'on' + evType ] = callback;
-		}
-	}
-	
-	/**
-	 * Deletes the events for each element
-	 * @param {DOM Element} el
-	 * @param {String} evType
-	 * @param {Function} callback
-	 */
-	function deleteEvents( el, evType, callback ) {
-		if ( el.removeEventListener ) {
-			el.removeEventListener( evType, callback );
-		} else if ( el.detachEvent ) {
-			el.detachEvent( 'on' + evType, callback );
-		} else {
-			el[ 'on' + evType ] = undefined;
 		}
 	}
 	
@@ -324,6 +311,21 @@
 		}
 	}
 	
+	function eventChange( e ) {
+		if ( !enable ) { 
+			return;
+		}
+		if ( !is( this ) ) {
+			return;
+		}
+		if  ( !e ) {
+			e = window.event;
+		}
+		var oSelf = this;
+		window.autoTab.options.onChanged.call( this, e );
+		selectRange( searchNextElement( oSelf ) );
+	}
+	
 	/**
 	 * Modified the input value to the correct format or pattern
 	 * @param {DOM Element} oSelf
@@ -384,7 +386,7 @@
 		isValidParameters( options );
 		this.options = extend( {}, this.options );
 		extend( this.options, options );
-		this._init();
+		this._init(false);
 	}
 
 	/**
@@ -401,29 +403,36 @@
 	/**
 	 * Initializes the plugin
 	 */
-	autoTab.prototype._init = function() {
+	autoTab.prototype._init = function(isRestore) {
 		each ( elements, function( i, el ) {
 			isValidElement( el );
-			initEvents( el, 'keyup', eventKeyUp );
-			el.setAttribute( 'maxlength', el.getAttribute( dataLength ) );
-			el.setAttribute( 'autocomplete','off' );
+			if ( el.nodeName.toLowerCase() === 'input' || el.nodeName.toLowerCase() === 'textarea') {
+				if( !isRestore ) {
+					initEvents( el, 'keyup', eventKeyUp );
+				}
+				el.setAttribute( 'maxlength', el.getAttribute( dataLength ) );
+				el.setAttribute( 'autocomplete','off' );
+			} else {
+				if( !isRestore ) {
+					initEvents( el, 'change', eventChange );
+				}
+			}
 		} );
 		
 		if ( this.options.autoFocus ) {
-			searchElement(0).focus();
+			searchElement( 0 ).focus();
 		}
 		
 		if ( this.options.addStyle ) {
 			initStyle();
 		}
 	}
-	
+
 	/**
 	 * Destroys the plugin
 	 */
 	autoTab.prototype.destroy = function() {
 		each ( elements, function( i, el ) {
-			deleteEvents( el, 'keyup', eventKeyUp );
 			deleteAttribute( el, 'maxlength' );
 			deleteAttribute( el, 'autocomplete' );
 		} );
@@ -436,7 +445,7 @@
 	
 	autoTab.prototype.restore = function() { 
 		enable = true;
-		this._init();
+		this._init(true);
 	}
 	
 	/**

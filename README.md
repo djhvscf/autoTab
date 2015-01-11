@@ -7,6 +7,9 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 * **v2.0.0** `10/Jan/2015`
 
 ## Bugs & Enhancements (next version)
+[X] Add support for `select` element
+[X] Add support for `input` disabled element 
+[ ] Add support for `button` element
 
 ## Release history
 
