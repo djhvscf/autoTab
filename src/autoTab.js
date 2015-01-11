@@ -45,7 +45,7 @@
 		dataPattern = 'data-pattern',
 		enable = true,
 		notAllowKeys = [ 9, 16, 37, 38, 39, 40 ],
-		allowElements = [ 'input', 'textarea', 'select' ],
+		allowElements = [ 'input', 'textarea', 'select', 'button' ],
 		elements = document.querySelectorAll( '[' + dataTab + ']' ),
 		head = document.getElementsByTagName( 'head' )[ 0 ],
 		emptyFunction = function() { };
@@ -91,7 +91,7 @@
 	 */
 	function each( array, callback ) {
 		for (var i = 0; i < array.length; i++ ) {
-			callback( i, array[ i ] );
+			callback( array[ i ] );
 		}
 	}
 	
@@ -141,7 +141,7 @@
 	 * @param {String} message 
 	 */
 	function error( message ) {
-		throw new Error( message );
+		throw new Error( message === '' ? 'An error has been raised' : message );
 	}
 	
 	/**
@@ -184,7 +184,7 @@
 		} else if ( !isNumeric( el.getAttribute( dataTab ) ) ) {
 			error( 'Error. The element has an invalid property. The data-tab is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
 		}
-		if ( el.nodeName.toLowerCase() !== 'select' ) {
+		if ( el.nodeName.toLowerCase() !== 'select' && el.nodeName.toLowerCase() !== 'button' ) {
 			if ( !isNumeric( el.getAttribute( dataLength ) ) ) {
 			error( 'Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
 			}
@@ -295,11 +295,11 @@
 		}
 		var oSelf = this;
 		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
-		window.autoTab.options.onChanged.call( this, e );
+		window.autoTab.options.onChanged.call( oSelf, e );
 		oSelf.value = filterInputValue(oSelf, oSelf.value);
 		if ( inArray( e.keyCode, notAllowKeys ) ) {
 			if ( oSelf.value.length < oSelf.maxLength ) {
-				return false;		
+				return false;
 			}
 		} else {
 			if ( oSelf.value.length < oSelf.maxLength ) {
@@ -311,18 +311,38 @@
 		}
 	}
 	
+	/**
+	 * Takes the change event of select element
+	 * @param {Event} e
+	 */
 	function eventChange( e ) {
+		eventDefault( e, this );
+	}
+	
+	/**
+	 * Takes the click event of button element
+	 * @param {Event} e
+	 */
+	function eventClick( e ) {
+		eventDefault( e, this );
+	}
+	
+	/**
+	 * Takes the click event of button element and the change event of select element
+	 * @param {Event} e
+	 * @param {DOM Element} oSelf
+	 */
+	function eventDefault( e, oSelf ) {
 		if ( !enable ) { 
 			return;
 		}
-		if ( !is( this ) ) {
+		if ( !is( oSelf ) ) {
 			return;
 		}
 		if  ( !e ) {
 			e = window.event;
 		}
-		var oSelf = this;
-		window.autoTab.options.onChanged.call( this, e );
+		window.autoTab.options.onChanged.call( oSelf, e );
 		selectRange( searchNextElement( oSelf ) );
 	}
 	
@@ -354,7 +374,6 @@
             case 'custom':
                 patternHelper = new RegExp( oSelf.getAttribute( dataPattern ), 'g' );
                 break;
-            case 'all':
             default:
                 break;
         }
@@ -393,20 +412,40 @@
 	 * Options
 	 */
 	autoTab.prototype.options = {
-		autoFocus: false, 
+		autoFocus: false,
 		addStyle: false,
+		recursive: false,
 		onComplete: emptyFunction,
-		onChanged: emptyFunction,
-		recursive: false
+		onChanged: emptyFunction
 	}
 	
 	/**
 	 * Initializes the plugin
 	 */
-	autoTab.prototype._init = function(isRestore) {
-		each ( elements, function( i, el ) {
+	autoTab.prototype._init = function( isRestore ) {
+		each ( elements, function( el ) {
 			isValidElement( el );
-			if ( el.nodeName.toLowerCase() === 'input' || el.nodeName.toLowerCase() === 'textarea') {
+			switch ( el.nodeName.toLowerCase() ) {
+				case 'input':
+				case 'textarea':
+					if( !isRestore ) {
+						initEvents( el, 'keyup', eventKeyUp );
+					}
+					el.setAttribute( 'maxlength', el.getAttribute( dataLength ) );
+					el.setAttribute( 'autocomplete','off' );
+				break;
+				case 'select':
+					if( !isRestore ) {
+						initEvents( el, 'change', eventChange );
+					}
+				break;
+				case 'button':
+					if( !isRestore ) {
+						initEvents( el, 'click', eventClick );
+					}
+				break;
+			}
+			/*if ( el.nodeName.toLowerCase() === 'input' || el.nodeName.toLowerCase() === 'textarea' ) {
 				if( !isRestore ) {
 					initEvents( el, 'keyup', eventKeyUp );
 				}
@@ -416,7 +455,7 @@
 				if( !isRestore ) {
 					initEvents( el, 'change', eventChange );
 				}
-			}
+			}*/
 		} );
 		
 		if ( this.options.autoFocus ) {
@@ -432,7 +471,7 @@
 	 * Destroys the plugin
 	 */
 	autoTab.prototype.destroy = function() {
-		each ( elements, function( i, el ) {
+		each ( elements, function( el ) {
 			deleteAttribute( el, 'maxlength' );
 			deleteAttribute( el, 'autocomplete' );
 		} );
@@ -443,6 +482,9 @@
 		enable = false;
 	}
 	
+	/**
+	 * Restores the plugin
+	 */
 	autoTab.prototype.restore = function() { 
 		enable = true;
 		this._init(true);

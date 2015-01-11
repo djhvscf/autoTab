@@ -2,8 +2,9 @@
 
 ### 2.x.x
 * Added support to input disabled
-* Support to `select` element
-* Deleted the `deleteEvents` function because is so heavy for the browsers
+* Added support for `select` element
+* Deleted the `deleteEvents` function because is so heavy for the browsers delete and bind events
+* Added support for `button` element
 
 ### 2.0.0
 * Added `data-upper` tag

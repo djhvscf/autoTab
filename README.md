@@ -9,7 +9,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 ## Bugs & Enhancements (next version)
 * [X] Add support for `select` element
 * [X] Add support for `input` disabled element 
-* [ ] Add support for `button` element
+* [X] Add support for `button` element
 
 ## Release history
 
@@ -48,15 +48,15 @@ this property will be the `maxlength` property in each input element and it help
 
 **Data tags**
 
-| Tag | Description | Required | Data type |
-| ---------- | ----------- | ------- | ------- |
-| `data-tab` | Sets the input order | Yes | `"0" to "N"` |
-| `data-length` | The length allowed by input element | Yes | `"0" to "N"` |
-| `data-upper` | Converts the input value to upper case | No | `"true" or "false"` |
-| `data-lower` | Converts the input value to lower case | No | `"true" or "false"` |
-| `data-nospace` | Not allowed the white spaces | No | `"true" or "false"` |
-| `data-format` | The format allowed in the input element | No | `"text"`, `"alpha"`/`"alphanumeric"`, `"number"`/`"numeric"`, `"hex"`/`"hexadecimal"`, `"custom"` |
-| `data-pattern` | The regular expression to evaluate the input value, if it is setted you have to set the `data-format` with `"custom"` option  | No | Regular expression |
+| Tag | Description | Required | Data type | DOM Element |
+| ---------- | ----------- | ------- | ------- | ------- |
+| `data-tab` | Sets the input order | Yes | `"0" to "N"` | `input`, `textarea`, `select`, `button` |
+| `data-length` | The length allowed by input element | Yes | `"0" to "N"` | `input`, `textarea` |
+| `data-upper` | Converts the input value to upper case | No | `"true" or "false"` | `input`, `textarea` |
+| `data-lower` | Converts the input value to lower case | No | `"true" or "false"` | `input`, `textarea` |
+| `data-nospace` | Not allowed the white spaces | No | `"true" or "false"` | `input`, `textarea` |
+| `data-format` | The format of the input value allowed in the input element | No | `"text"`, `"alpha"`/`"alphanumeric"`, `"number"`/`"numeric"`, `"hex"`/`"hexadecimal"`, `"custom"` | `input`, `textarea` |
+| `data-pattern` | The regular expression to evaluate the input value, if it is setted you have to set the `data-format` with `"custom"` option  | No | Regular expression | `input`, `textarea` |
 		
 **Parameters**   
 
