@@ -41,7 +41,13 @@ this property will be the `maxlength` property in each input element and it help
 ```
 ```javascript
 (function() {
-	// Calling the plugin
+	
+	var options = { recursive: true, autoFocus: true};
+	// Calling the plugin with options
+	var autoTab = new autoTab(options);
+	
+	
+	// Calling the plugin without options
 	var autoTab = new autoTab();
 })();
 ```
