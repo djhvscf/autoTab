@@ -445,17 +445,6 @@
 					}
 				break;
 			}
-			/*if ( el.nodeName.toLowerCase() === 'input' || el.nodeName.toLowerCase() === 'textarea' ) {
-				if( !isRestore ) {
-					initEvents( el, 'keyup', eventKeyUp );
-				}
-				el.setAttribute( 'maxlength', el.getAttribute( dataLength ) );
-				el.setAttribute( 'autocomplete','off' );
-			} else {
-				if( !isRestore ) {
-					initEvents( el, 'change', eventChange );
-				}
-			}*/
 		} );
 		
 		if ( this.options.autoFocus ) {
