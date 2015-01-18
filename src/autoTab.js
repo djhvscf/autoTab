@@ -261,7 +261,7 @@
 		if ( !nextElement ) {
 			window.autoTab.options.onComplete.call();
 			if ( window.autoTab.options.recursive ) {
-				searchElement(0).focus();
+				searchElement( 0 ).focus();
 			}
 			return;
 		}
@@ -405,7 +405,7 @@
 		isValidParameters( options );
 		this.options = extend( {}, this.options );
 		extend( this.options, options );
-		this._init(false);
+		this._init( false );
 	}
 
 	/**
@@ -476,7 +476,7 @@
 	 */
 	autoTab.prototype.restore = function() { 
 		enable = true;
-		this._init(true);
+		this._init( true );
 	}
 	
 	/**
