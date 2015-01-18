@@ -1,6 +1,6 @@
 ## ChangeLog
 
-### 2.x.x
+### 2.0.3
 * Added support to input disabled
 * Added support for `select` element
 * Deleted the `deleteEvents` function because is so heavy for the browsers delete and bind events
