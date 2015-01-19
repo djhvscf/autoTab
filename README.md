@@ -80,7 +80,8 @@ this property will be the `maxlength` property in each input element and it help
 | `destroy` | If you call this method the plugin will be deleted |
 | `restore` | If you want to enable the plugin again in your page |
 
-**Demo:** [http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html](http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html)
+## Demo
+[http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html](http://djhvscf.github.io/Blog/experiments/2014/12/autoTab.html)
 
 ## Known issues
 
