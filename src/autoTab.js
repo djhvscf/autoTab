@@ -51,7 +51,7 @@
 		emptyFunction = function() { };
 		
 	/**
-	 * Extends the properties between tow objects
+	 * Extends the properties between two objects
 	 * @param {Object} a 
 	 * @param {Object} b
 	 * @return {Object} extended
