@@ -46,7 +46,7 @@
 		enable = true,
 		notAllowKeys = [ 9, 16, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea', 'select', 'button' ],
-		elements = document.querySelectorAll( '[' + dataTab + ']' ),
+		elements = getElements( '[' + dataTab + ']' ),
 		head = document.getElementsByTagName( 'head' )[ 0 ],
 		emptyFunction = function() { };
 		
@@ -125,6 +125,15 @@
 	 */
 	function getElement( tagName ) {
 		return document.querySelector( tagName );
+	}
+	
+	/**
+	 * Searches all the elements in the DOM that corresponding with the tag name passed by parameter
+	 * @param {String} tagName
+	 * @return {DOM Elements} An array of elements found
+	 */
+	function getElements( tagName ) {
+		return document.querySelectorAll( tagName );
 	}
 	
 	/**
