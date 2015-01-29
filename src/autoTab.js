@@ -154,36 +154,6 @@
 	}
 	
 	/**
-	 * Creates the styles to apply to inputs and textareas
-	 */
-	function initStyle() {
-		var focusStyle = document.createElement( 'style' ),
-			inputStyle = document.createElement( 'style' );
-		
-		inputStyle.id = 'inputStyle';
-		inputStyle.type = 'text/css';
-		inputStyle.innerHTML = ['input[type=text], textarea {', 
-									'transition: all 0.30s ease-in-out;',
-									'outline: none;',
-									'padding: 3px 0px 3px 3px;',
-									'margin: 5px 1px 3px 0px;',
-									'border: 1px solid #DDDDDD;',
-								'}'].join('');
-								
-		focusStyle.id = 'focusStyle';
-		focusStyle.type = 'text/css';
-		focusStyle.innerHTML = ['input[type=text]:focus, textarea:focus {',
-									'box-shadow: 0 0 5px rgba(81, 203, 238, 1);',
-									'padding: 3px 0px 3px 3px;',
-									'margin: 5px 1px 3px 0px;',
-									'border: 1px solid rgba(81, 203, 238, 1);',
-								'}'].join('');
-		
-		head.appendChild( inputStyle );
-		head.appendChild( focusStyle );
-	}
-	
-	/**
 	 * Validates if the DOM element passed by parameter is valid
 	 * @param {DOM Element} el
 	 */
@@ -195,7 +165,7 @@
 		}
 		if ( el.nodeName.toLowerCase() !== 'select' && el.nodeName.toLowerCase() !== 'button' ) {
 			if ( !isNumeric( el.getAttribute( dataLength ) ) ) {
-			error( 'Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
+				error( 'Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
 			}
 		}
 	}
@@ -205,24 +175,25 @@
 	 * @param {Object} params
 	 */
 	function isValidParameters( params ) {
+		var errorMessage = '';
 		if ( typeof params.autoFocus !== 'boolean' && typeof params.autoFocus !== 'undefined' ) {
-			error( 'Error. You must pass a boolean in the autofocus parameter' );
-		}
-		
-		if ( typeof params.addStyle !== 'boolean' && typeof params.addStyle !== 'undefined' ) {
-			error( 'Error. You must pass a boolean in the addStyle parameter' );
+			errorMessage = 'Error. You must pass a boolean in the autofocus parameter';
 		}
 		
 		if ( typeof params.recursive !== 'boolean' && typeof params.recursive !== 'undefined' ) {
-			error( 'Error. You must pass a boolean in the recursive parameter' );
+			errorMessage = 'Error. You must pass a boolean in the recursive parameter';
 		}
 		
 		if ( typeof params.onComplete !== 'function' && typeof params.onComplete !== 'undefined' ) {
-			error( 'Error. You must pass a function in the onComplete parameter' );
+			errorMessage = 'Error. You must pass a function in the onComplete parameter';
 		}
 		
 		if ( typeof params.onChanged !== 'function' && typeof params.onChanged !== 'undefined' ) {
-			error( 'Error. You must pass a boolean in the onChanged parameter' );
+			errorMessage = 'Error. You must pass a boolean in the onChanged parameter';
+		}
+		
+		if(errorMessage !== '') {
+			error( errorMessage );
 		}
 	}
 	
@@ -240,14 +211,6 @@
 		} else {
 			el[ 'on' + evType ] = callback;
 		}
-	}
-	
-	/**
-	 * Deletes the style added by this plugin
-	 */
-	function deleteStyle() {
-		head.removeChild( document.getElementById( 'inputStyle' ) );
-		head.removeChild( document.getElementById( 'focusStyle' ) );
 	}
 	
 	/**
@@ -422,7 +385,6 @@
 	 */
 	autoTab.prototype.options = {
 		autoFocus: false,
-		addStyle: false,
 		recursive: false,
 		onComplete: emptyFunction,
 		onChanged: emptyFunction
@@ -459,10 +421,6 @@
 		if ( this.options.autoFocus ) {
 			searchElement( 0 ).focus();
 		}
-		
-		if ( this.options.addStyle ) {
-			initStyle();
-		}
 	}
 
 	/**
@@ -474,9 +432,6 @@
 			deleteAttribute( el, 'autocomplete' );
 		} );
 		
-		if ( this.options.addStyle ) {
-			deleteStyle();
-		}
 		enable = false;
 	}
 	
