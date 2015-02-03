@@ -279,6 +279,12 @@
 			}
 			else if ( oSelf.value.length === oSelf.maxLength ) {
 				selectRange( searchNextElement( oSelf ) );
+			} else {
+				// FIx #1 When the DOM elements have more characters than the max length allowed
+				if( window.autoTab.options.deleteExceedCharacter ) {
+					oSelf.value = oSelf.value.substring( 0, oSelf.maxLength );
+				}
+				selectRange( searchNextElement( oSelf ) );
 			}
 		}
 	}
@@ -387,7 +393,8 @@
 		autoFocus: false,
 		recursive: false,
 		onComplete: emptyFunction,
-		onChanged: emptyFunction
+		onChanged: emptyFunction,
+		deleteExceedCharacter: false
 	}
 	
 	/**

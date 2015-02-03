@@ -70,6 +70,7 @@ this property will be the `maxlength` property in each input element and it help
 | `onComplete` | True if you want to call a function when all the inputs are already "tab-ed", you have to pass the callback function in this parameter | `empty` |
 | `onChanged` | Returns a callback with the `event`, it has the information where you can access to key pressed | `empty` |
 | `recursive` | True if you want that once the inputs are filled, the plugin starts again, otherwise, false | `false` |
+| `deleteExceedCharacter` | True if you want delete the characters that are exceeding the max lenght set, otherwise, false | `false` |
 
 
 **Methods**

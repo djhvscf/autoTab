@@ -2,7 +2,8 @@
 
 ### 2.x.x
 * Added a function that returns all the elements that corresponding with a tag name
-* Delete the add style option
+* Delete the `addstyle` option
+* Added the `deleteExceedCharacter` option
 
 ### 2.0.3
 * Added support to input disabled
