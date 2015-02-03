@@ -44,7 +44,7 @@
 		dataFormat = 'data-format',
 		dataPattern = 'data-pattern',
 		enable = true,
-		notAllowKeys = [ 9, 16, 37, 38, 39, 40 ],
+		notAllowKeys = [ 9, 16, 35, 36, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea', 'select', 'button' ],
 		elements = getElements( '[' + dataTab + ']' ),
 		head = document.getElementsByTagName( 'head' )[ 0 ],
@@ -272,7 +272,7 @@
 		if ( inArray( e.keyCode, notAllowKeys ) ) {
 			if ( oSelf.value.length < oSelf.maxLength ) {
 				return false;
-			}
+			} 
 		} else {
 			if ( oSelf.value.length < oSelf.maxLength ) {
 				return false;

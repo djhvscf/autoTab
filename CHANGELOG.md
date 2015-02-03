@@ -4,6 +4,7 @@
 * Added a function that returns all the elements that corresponding with a tag name
 * Delete the `addstyle` option
 * Added the `deleteExceedCharacter` option
+* Added more key codes
 
 ### 2.0.3
 * Added support to input disabled
