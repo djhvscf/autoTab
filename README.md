@@ -8,7 +8,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Bugs & Enhancements (next version)
 * [X] Fix #1 When the DOM elements have more characters than the max length allowed
-* [ ] Fix #2 Can't select the text in input
+* [X] Fix #2 Can't select the text in input
 
 ## Release history
 

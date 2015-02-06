@@ -5,6 +5,7 @@
 * Delete the `addstyle` option
 * Added the `deleteExceedCharacter` option
 * Added more key codes
+* Fixed the issue #2
 
 ### 2.0.3
 * Added support to input disabled
