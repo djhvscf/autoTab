@@ -44,7 +44,7 @@
 		dataFormat = 'data-format',
 		dataPattern = 'data-pattern',
 		enable = true,
-		notAllowKeys = [ 9, 16, 35, 36, 37, 38, 39, 40 ],
+		specialKeys = [ 16, 35, 36, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea', 'select', 'button' ],
 		elements = getElements( '[' + dataTab + ']' ),
 		head = document.getElementsByTagName( 'head' )[ 0 ],
@@ -264,28 +264,26 @@
 		}
 		if  ( !e ) {
 			e = window.event;
-		}
+		}		
+		// FIx #2 Can't select the text in input
+		if ( inArray( e.keyCode, specialKeys ) ) {
+			return false;
+		}		
 		var oSelf = this;
 		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
 		window.autoTab.options.onChanged.call( oSelf, e );
-		oSelf.value = filterInputValue(oSelf, oSelf.value);
-		if ( inArray( e.keyCode, notAllowKeys ) ) {
-			if ( oSelf.value.length < oSelf.maxLength ) {
-				return false;
-			} 
+		oSelf.value = filterInputValue(oSelf, oSelf.value);		
+		if ( oSelf.value.length < oSelf.maxLength ) {
+			return false;
+		}
+		else if ( oSelf.value.length === oSelf.maxLength ) {
+			selectRange( searchNextElement( oSelf ) );
 		} else {
-			if ( oSelf.value.length < oSelf.maxLength ) {
-				return false;
+			// FIx #1 When the DOM elements have more characters than the max length allowed
+			if( window.autoTab.options.deleteExceedCharacter ) {
+				oSelf.value = oSelf.value.substring( 0, oSelf.maxLength );
 			}
-			else if ( oSelf.value.length === oSelf.maxLength ) {
-				selectRange( searchNextElement( oSelf ) );
-			} else {
-				// FIx #1 When the DOM elements have more characters than the max length allowed
-				if( window.autoTab.options.deleteExceedCharacter ) {
-					oSelf.value = oSelf.value.substring( 0, oSelf.maxLength );
-				}
-				selectRange( searchNextElement( oSelf ) );
-			}
+			selectRange( searchNextElement( oSelf ) );
 		}
 	}
 	
