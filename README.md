@@ -4,16 +4,15 @@ A plugin that allows the auto tab between inputs and text areas. It is beautiful
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Current version
-* **v2.0.3** `18/Jan/2015`
+* **v2.0.8** `06/Feb/2015`
 
 ## Bugs & Enhancements (next version)
-* [X] Fix #1 When the DOM elements have more characters than the max length allowed
-* [X] Fix #2 Can't select the text in input
 
 ## Release history
 
 | Version Number  | Date          |
 | --------------- | -----------   |
+| v2.0.8		  |	`06/Feb/2015` |
 | v2.0.3		  |	`18/Jan/2015` |
 | v2.0.0		  |	`10/Jan/2015` |
 | v1.6.0		  |	`02/Jan/2015` |
