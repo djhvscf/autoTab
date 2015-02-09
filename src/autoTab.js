@@ -398,32 +398,36 @@
 	 * Initializes the plugin
 	 */
 	autoTab.prototype._init = function( isRestore ) {
-		each ( elements, function( el ) {
-			isValidElement( el );
-			switch ( el.nodeName.toLowerCase() ) {
-				case 'input':
-				case 'textarea':
-					if( !isRestore ) {
-						initEvents( el, 'keyup', eventKeyUp );
-					}
-					el.setAttribute( 'maxlength', el.getAttribute( dataLength ) );
-					el.setAttribute( 'autocomplete','off' );
-				break;
-				case 'select':
-					if( !isRestore ) {
-						initEvents( el, 'change', eventChange );
-					}
-				break;
-				case 'button':
-					if( !isRestore ) {
-						initEvents( el, 'click', eventClick );
-					}
-				break;
+		try {
+			each ( elements, function( el ) {
+				isValidElement( el );
+				switch ( el.nodeName.toLowerCase() ) {
+					case 'input':
+					case 'textarea':
+						if( !isRestore ) {
+							initEvents( el, 'keyup', eventKeyUp );
+						}
+						el.setAttribute( 'maxlength', el.getAttribute( dataLength ) );
+						el.setAttribute( 'autocomplete','off' );
+					break;
+					case 'select':
+						if( !isRestore ) {
+							initEvents( el, 'change', eventChange );
+						}
+					break;
+					case 'button':
+						if( !isRestore ) {
+							initEvents( el, 'click', eventClick );
+						}
+					break;
+				}
+			} );
+			
+			if ( this.options.autoFocus ) {
+				searchElement( 0 ).focus();
 			}
-		} );
-		
-		if ( this.options.autoFocus ) {
-			searchElement( 0 ).focus();
+		} catch ( ex ) {
+			error( ex );
 		}
 	}
 

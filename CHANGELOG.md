@@ -3,6 +3,7 @@
 ### 2.x.x
 * Deleted a variable never used
 * Re-define the parameters for `filterInputValue` function
+* Added `try catch` block
 
 ### 2.0.8
 * Added a function that returns all the elements that corresponding with a tag name
