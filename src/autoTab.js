@@ -47,7 +47,6 @@
 		specialKeys = [ 16, 35, 36, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea', 'select', 'button' ],
 		elements = getElements( '[' + dataTab + ']' ),
-		head = document.getElementsByTagName( 'head' )[ 0 ],
 		emptyFunction = function() { };
 		
 	/**
@@ -272,7 +271,7 @@
 		var oSelf = this;
 		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
 		window.autoTab.options.onChanged.call( oSelf, e );
-		oSelf.value = filterInputValue(oSelf, oSelf.value);		
+		oSelf.value = filterInputValue( oSelf );
 		if ( oSelf.value.length < oSelf.maxLength ) {
 			return false;
 		}
@@ -325,10 +324,10 @@
 	/**
 	 * Modified the input value to the correct format or pattern
 	 * @param {DOM Element} oSelf
-	 * @param {String} inputValue
 	 */
-	function filterInputValue( oSelf, inputValue ) {
-		var patternHelper = null;
+	function filterInputValue( oSelf ) {
+		var patternHelper = null,
+			inputValue = oSelf.value;
 		switch ( oSelf.getAttribute( dataFormat ) ) {
             case 'text':
                 patternHelper = new RegExp( '[0-9]+', 'g' );
