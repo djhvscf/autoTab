@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v2.0.8
+ * @version: v2.0.16
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *
@@ -43,6 +43,7 @@
 		dataNoSpace = 'data-nospace',
 		dataFormat = 'data-format',
 		dataPattern = 'data-pattern',
+		dataTabStr = '[data-tab="%s"]',
 		enable = true,
 		specialKeys = [ 16, 35, 36, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea', 'select', 'button' ],
@@ -54,7 +55,29 @@
 							numeric: '[^0-9]+',
 							hexadecimal: '[^0-9A-Fa-f]+'
 						};
-						
+	
+	/**
+	 * Replace characters in the string passed by parameter
+	 * @param {String} str
+	 * @return {String} str
+	 */
+    function sprintf( str ) {
+        var args = arguments,
+            flag = true,
+            i = 1;
+
+        str = str.replace( /%s/g, function () {
+            var arg = args[ i++ ];
+
+            if ( typeof arg === 'undefined' ) {
+                flag = false;
+                return '';
+            }
+            return arg;
+        });
+        return flag ? str : '';
+    }
+	
 	/**
 	 * Extends the properties between two objects
 	 * @param {Object} a 
@@ -106,9 +129,9 @@
 	 * @return {DOM Element} Element found
 	 */
 	function searchElement( index ) {
-		var el = getElement( '[' + dataTab + '="' + index + '"]' );
+		var el = getElement( sprintf( dataTabStr, index ) );
 		if ( el !== null && el.getAttribute( 'disabled' ) === 'disabled' ) {
-			return getElement( '[' + dataTab + '="' + parseInt( index + 1 ) + '"]' );
+			return searchNextElement( el );
 		}
 		
 		return el;
@@ -430,8 +453,12 @@
 	 * Restores the plugin
 	 */
 	autoTab.prototype.restore = function() { 
-		enable = true;
-		this._init( true );
+		if ( !enable ) {
+			enable = true;
+			this._init( true );
+		} else {
+			searchElement( 0 ).focus();
+		}
 	}
 	
 	/**
