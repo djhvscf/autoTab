@@ -47,8 +47,14 @@
 		specialKeys = [ 16, 35, 36, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea', 'select', 'button' ],
 		elements = getElements( '[' + dataTab + ']' ),
-		emptyFunction = function() { };
-		
+		emptyFunction = function() { },
+		regExpressions = { text: '[0-9]+',
+							alpha: '[^a-zA-Z]+',
+							alphanumeric: '[^0-9a-zA-Z]+',
+							numeric: '[^0-9]+',
+							hexadecimal: '[^0-9A-Fa-f]+'
+						};
+						
 	/**
 	 * Extends the properties between two objects
 	 * @param {Object} a 
@@ -327,35 +333,12 @@
 	 */
 	function filterInputValue( oSelf ) {
 		var patternHelper = null,
-			inputValue = oSelf.value;
-		switch ( oSelf.getAttribute( dataFormat ) ) {
-            case 'text':
-                patternHelper = new RegExp( '[0-9]+', 'g' );
-                break;
-            case 'alpha':
-                patternHelper = new RegExp( '[^a-zA-Z]+', 'g' );
-                break;
-			case 'alphanumeric':
-				patternHelper = new RegExp( '[^0-9a-zA-Z]+', 'g' );
-				break;
-            case 'number':
-            case 'numeric':
-                patternHelper = new RegExp( '[^0-9]+', 'g' );
-                break;
-            case 'hex':
-            case 'hexadecimal':
-                patternHelper = new RegExp( '[^0-9A-Fa-f]+', 'g' );
-                break;
-            case 'custom':
-                patternHelper = new RegExp( oSelf.getAttribute( dataPattern ), 'g' );
-                break;
-            default:
-                break;
-        }
+			inputValue = oSelf.value,
+			format = oSelf.getAttribute( dataFormat );
 		
-		if ( patternHelper !== null ) {
-            inputValue = inputValue.replace( patternHelper, '' );
-        }
+		if ( format !== null ) {
+			inputValue = inputValue.replace( new RegExp( format === 'custom' ? oSelf.getAttribute( dataPattern ) : regExpressions[ format ], 'g' ), '' );
+		}
 
         if ( oSelf.getAttribute( dataNoSpace ) ) {
             inputValue = inputValue.replace( new RegExp( '[ ]+', 'g' ), '' );

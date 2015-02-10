@@ -60,7 +60,7 @@ this property will be the `maxlength` property in each input element and it help
 | `data-upper` | Converts the input value to upper case | No | `"true" or "false"` | `input`, `textarea` |
 | `data-lower` | Converts the input value to lower case | No | `"true" or "false"` | `input`, `textarea` |
 | `data-nospace` | Not allowed the white spaces | No | `"true" or "false"` | `input`, `textarea` |
-| `data-format` | The format of the input value allowed in the input element | No | `"text"`, `"alpha"`/`"alphanumeric"`, `"number"`/`"numeric"`, `"hex"`/`"hexadecimal"`, `"custom"` | `input`, `textarea` |
+| `data-format` | The format of the input value allowed in the input element | No | `"text"`, `"alpha"`, `"alphanumeric"`, `"numeric"`, `"hexadecimal"`, `"custom"` | `input`, `textarea` |
 | `data-pattern` | The regular expression to evaluate the input value, if it is set you have to set the `data-format` with `"custom"` option  | No | `Regular expression` | `input`, `textarea` |
 		
 **Parameters**   
