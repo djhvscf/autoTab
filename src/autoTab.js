@@ -430,8 +430,10 @@
 	 * Restores the plugin
 	 */
 	autoTab.prototype.restore = function() { 
-		enable = true;
-		this._init( true );
+		if ( !enable ) {
+			enable = true;
+			this._init( true );
+		}
 	}
 	
 	/**
