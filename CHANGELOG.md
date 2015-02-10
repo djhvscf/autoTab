@@ -1,11 +1,14 @@
 ## ChangeLog
 
-### 2.x.x
+### 2.0.16
 * Deleted a variable never used
 * Re-define the parameters for `filterInputValue` function
 * Added `try catch` block
 * Deleted consfused formats
 * Code refactor
+* Added logic to `restore` function when the plugin is already enabled
+* Added some code consistency
+* Added `sprintf` function for better replace logic
 
 ### 2.0.8
 * Added a function that returns all the elements that corresponding with a tag name

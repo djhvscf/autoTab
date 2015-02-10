@@ -4,7 +4,7 @@ A plugin that allows the auto tab between inputs and text areas. It is beautiful
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Current version
-* **v2.0.8** `06/Feb/2015`
+* **v2.0.16** `10/Feb/2015`
 
 ## Bugs & Enhancements (next version)
 
@@ -12,6 +12,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 | Version Number  | Date          |
 | --------------- | -----------   |
+| v2.0.16		  |	`10/Feb/2015` |
 | v2.0.8		  |	`06/Feb/2015` |
 | v2.0.3		  |	`18/Jan/2015` |
 | v2.0.0		  |	`10/Jan/2015` |
