@@ -10,27 +10,27 @@
     	<div class="container">
 			<h1>autoTab Demos</h1>
 			<div class="form-group">
-				<label for="firstCombination">data-length="2" & data-tab="0"</label>
-				<input name="firstCombination" id="firstCombination" type="text" data-tab="0" data-length="2" data-upper="true" class="form-control">
+				<label for="firstCombination">data-tab="0" & data-length="5" & data-upper="true"</label>
+				<input name="firstCombination" id="firstCombination" type="text" data-tab="0" data-length="5" data-upper="true" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="secondCombination">data-length="4" & data-tab="1"</label>
+				<label for="secondCombination">data-tab="1" & data-length="4"</label>
 				<input name="secondCombination" id="secondCombination" type="text" data-tab="1" data-length="4" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="sevenCombination">data-length="3" & data-tab="6"</label>
-				<input name="sevenCombination" id="sevenCombination" type="text" data-tab="6" data-length="3" data-nospace="true" class="form-control">
+				<label for="sevenCombination">data-tab="6" & data-length="6" & data-nospace="true"</label>
+				<input name="sevenCombination" id="sevenCombination" type="text" data-tab="6" data-length="6" data-nospace="true" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="thirdCombination">data-length="5" & data-tab="2"</label>
-				<input name="thirdCombination" id="thirdCombination" type="text" data-tab="2" data-length="5" class="form-control">
+				<label for="thirdCombination">data-tab="2" & data-length="5" & disabled="disabled"</label>
+				<input name="thirdCombination" id="thirdCombination" type="text" data-tab="2" data-length="5" disabled="disabled" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="fifthCombination">data-length="5" & data-tab="4" & disabled</label>
-				<input name="fifthCombination" id="fifthCombination" type="text" data-tab="4"  disabled="disabled" data-length="5" data-format="custom" data-pattern="[^0-9\.]" class="form-control">
+				<label for="fifthCombination">data-tab="4" & data-length="5" & data-format="custom" & data-pattern="[^0-9\.]"</label>
+				<input name="fifthCombination" id="fifthCombination" type="text" data-tab="4" & data-length="5" data-format="custom" data-pattern="[^0-9\.]" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="fourthCombination">data-length="5" & data-tab="9"</label>
+				<label for="fourthCombination">data-tab="9" & data-length="5" & data-format="numeric"</label>
 				<input name="fourthCombination" id="fourthCombination" type="password" data-tab="9" data-length="5" data-format="numeric" class="form-control">
 			</div>
 			<div class="form-group">
@@ -42,11 +42,11 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="textarea">data-length="4" & data-tab="8"</label>
+				<label for="textarea">data-tab="8" & data-length="4"</label>
 				<textarea name="txtDescription" cols=10 rows=3 data-tab="8" data-length="4" class="form-control"></textarea>
 			</div>
 			<div class="form-group">
-				<label for="sixthCombination">data-length="8" & data-tab="5"</label>
+				<label for="sixthCombination">data-tab="5" & data-length="8"</label>
 				<input name="sixthCombination" id="sixthCombination" type="text" data-tab="5" data-length="8" class="form-control">
 			</div>
 			<div class="form-group">
@@ -55,7 +55,6 @@
 			</div>
 			<button type="button" class="btn btn-success" onclick="restore()">Restore autoTab</button>
 			<button type="button" class="btn btn-danger" onclick="destroy()">Destroy autoTab</button>			
-			<!-- 9 -->
         </div>
         <script src="src/autoTab.js"></script>
 		<script>
