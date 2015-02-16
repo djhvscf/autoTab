@@ -48,6 +48,7 @@
 		specialKeys = [ 16, 35, 36, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea', 'select', 'button' ],
 		elements = getElements( '[' + dataTab + ']' ),
+		totalElements = 1,
 		emptyFunction = function() { },
 		regExpressions = { text: '[0-9]+',
 							alpha: '[^a-zA-Z]+',
@@ -254,14 +255,17 @@
 	 * Selects the range of the element pass by parameter
 	 * @param {DOM Element} el
 	 */
-	function selectRange( el ) {
+	function selectNextElement( el ) {
 		var nextElement = el,
 			start,
 			end;
+		totalElements++;
 		if ( !nextElement ) {
-			window.autoTab.options.onComplete.call();
-			if ( window.autoTab.options.recursive ) {
-				searchElement( 0 ).focus();
+			if ( totalElements === elements.length  ) {
+				window.autoTab.options.onComplete.call();
+				if ( window.autoTab.options.recursive ) {
+					searchElement( 0 ).focus();
+				}
 			}
 			return;
 		}
@@ -305,13 +309,13 @@
 			return false;
 		}
 		else if ( oSelf.value.length === oSelf.maxLength ) {
-			selectRange( searchNextElement( oSelf ) );
+			selectNextElement( searchNextElement( oSelf ) );
 		} else {
 			// FIx #1 When the DOM elements have more characters than the max length allowed
 			if( window.autoTab.options.deleteExceedCharacter ) {
 				oSelf.value = oSelf.value.substring( 0, oSelf.maxLength );
 			}
-			selectRange( searchNextElement( oSelf ) );
+			selectNextElement( searchNextElement( oSelf ) );
 		}
 	}
 	
@@ -347,7 +351,7 @@
 			e = window.event;
 		}
 		window.autoTab.options.onChanged.call( oSelf, e );
-		selectRange( searchNextElement( oSelf ) );
+		selectNextElement( searchNextElement( oSelf ) );
 	}
 	
 	/**
