@@ -261,6 +261,7 @@
 			end;
 		totalElements++;
 		if ( !nextElement ) {
+			// FIx #6 Improve the complete function and add new option "if autoTab is completed, start again or finish
 			if ( totalElements === elements.length  ) {
 				window.autoTab.options.onComplete.call();
 				if ( window.autoTab.options.recursive ) {
