@@ -383,6 +383,23 @@
 	}
 	
 	/**
+	 * Cleans the values of the items bound
+	 */
+	function cleanValues() {
+		each ( elements, function( el ) {
+			switch ( el.nodeName.toLowerCase() ) {
+				case 'input':
+				case 'textarea':
+					el.value = "";
+				break;
+				case 'select':
+					el.selectedIndex = -1;
+				break;
+			}
+		} );
+	}
+	
+	/**
 	 * autoTab class
 	 * @param {Object} options
 	 */
@@ -401,7 +418,8 @@
 		recursive: false,
 		onComplete: emptyFunction,
 		onChanged: emptyFunction,
-		deleteExceedCharacter: false
+		deleteExceedCharacter: false,
+		cleanValuesOnRestart: false
 	}
 	
 	/**
@@ -409,6 +427,7 @@
 	 */
 	autoTab.prototype._init = function( isRestore ) {
 		try {
+			totalElements = 1;
 			each ( elements, function( el ) {
 				isValidElement( el );
 				switch ( el.nodeName.toLowerCase() ) {
@@ -460,6 +479,9 @@
 		if ( !enable ) {
 			enable = true;
 			this._init( true );
+			if ( this.options.cleanValuesOnRestart ) {
+				cleanValues();
+			}
 		} else {
 			searchElement( 0 ).focus();
 		}
