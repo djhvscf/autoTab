@@ -4,6 +4,7 @@
 * Fixed the issue #6
 * Changed the function name of `selectRange` to `selectNextElement`
 * Added new option `cleanValuesOnRestart`
+* Fixed the issue #9
 
 ### 2.0.16
 * Deleted a variable never used
