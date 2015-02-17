@@ -134,7 +134,6 @@
 		if ( el !== null && el.getAttribute( 'disabled' ) === 'disabled' ) {
 			return searchNextElement( el );
 		}
-		
 		return el;
 	}
 	
@@ -261,7 +260,7 @@
 			end;
 		totalElements++;
 		if ( !nextElement ) {
-			// FIx #6 Improve the complete function and add new option "if autoTab is completed, start again or finish
+			// FIx #6 Improve the complete function and add new option "if autoTab is completed, start again or finish"
 			if ( totalElements === elements.length  ) {
 				window.autoTab.options.onComplete.call();
 				if ( window.autoTab.options.recursive ) {
@@ -367,20 +366,37 @@
 		if ( format !== null ) {
 			inputValue = inputValue.replace( new RegExp( format === 'custom' ? oSelf.getAttribute( dataPattern ) : regExpressions[ format ], 'g' ), '' );
 		}
-
-        if ( oSelf.getAttribute( dataNoSpace ) ) {
+		// Fix #9 Convert data-upper, data-lower, data-nospace to boolean
+        if ( oSelf.getAttribute( dataNoSpace ) !== null && oSelf.getAttribute( dataNoSpace ).toLowerCase() === "true" ) {
             inputValue = inputValue.replace( new RegExp( '[ ]+', 'g' ), '' );
         }
 
-        if ( oSelf.getAttribute( dataUpperCase ) ) {
+        if ( oSelf.getAttribute( dataUpperCase ) !== null && oSelf.getAttribute( dataUpperCase ).toLowerCase() === "true" ) {
             inputValue = inputValue.toUpperCase();
         }
 
-        if ( oSelf.getAttribute( dataLowerCase ) ) {
+        if ( oSelf.getAttribute( dataLowerCase ) !== null && oSelf.getAttribute( dataLowerCase ).toLowerCase() === "true" ) {
             inputValue = inputValue.toLowerCase();
         }
 		
 		return inputValue;
+	}
+	
+	/**
+	 * Cleans the values of the items bound
+	 */
+	function cleanValues() {
+		each ( elements, function( el ) {
+			switch ( el.nodeName.toLowerCase() ) {
+				case 'input':
+				case 'textarea':
+					el.value = "";
+				break;
+				case 'select':
+					el.selectedIndex = -1;
+				break;
+			}
+		} );
 	}
 	
 	/**
@@ -402,7 +418,8 @@
 		recursive: false,
 		onComplete: emptyFunction,
 		onChanged: emptyFunction,
-		deleteExceedCharacter: false
+		deleteExceedCharacter: false,
+		cleanValuesOnRestart: false
 	}
 	
 	/**
@@ -410,6 +427,7 @@
 	 */
 	autoTab.prototype._init = function( isRestore ) {
 		try {
+			totalElements = 1;
 			each ( elements, function( el ) {
 				isValidElement( el );
 				switch ( el.nodeName.toLowerCase() ) {
@@ -461,6 +479,9 @@
 		if ( !enable ) {
 			enable = true;
 			this._init( true );
+			if ( this.options.cleanValuesOnRestart ) {
+				cleanValues();
+			}
 		} else {
 			searchElement( 0 ).focus();
 		}
