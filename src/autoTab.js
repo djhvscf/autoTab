@@ -366,16 +366,16 @@
 		if ( format !== null ) {
 			inputValue = inputValue.replace( new RegExp( format === 'custom' ? oSelf.getAttribute( dataPattern ) : regExpressions[ format ], 'g' ), '' );
 		}
-
-        if ( oSelf.getAttribute( dataNoSpace ) ) {
+		// Fix #9 Convert data-upper, data-lower, data-nospace to boolean
+        if ( oSelf.getAttribute( dataNoSpace ) !== null && oSelf.getAttribute( dataNoSpace ).toLowerCase() === "true" ) {
             inputValue = inputValue.replace( new RegExp( '[ ]+', 'g' ), '' );
         }
 
-        if ( oSelf.getAttribute( dataUpperCase ) ) {
+        if ( oSelf.getAttribute( dataUpperCase ) !== null && oSelf.getAttribute( dataUpperCase ).toLowerCase() === "true" ) {
             inputValue = inputValue.toUpperCase();
         }
 
-        if ( oSelf.getAttribute( dataLowerCase ) ) {
+        if ( oSelf.getAttribute( dataLowerCase ) !== null && oSelf.getAttribute( dataLowerCase ).toLowerCase() === "true" ) {
             inputValue = inputValue.toLowerCase();
         }
 		
