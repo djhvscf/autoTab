@@ -297,21 +297,22 @@
 		if  ( !e ) {
 			e = window.event;
 		}		
-		// FIx #2 Can't select the text in input
+		// Fix #2 Can't select the text in input
 		if ( inArray( e.keyCode, specialKeys ) ) {
 			return false;
 		}		
 		var oSelf = this;
 		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
-		window.autoTab.options.onChanged.call( oSelf, e );
 		oSelf.value = filterInputValue( oSelf );
+		// Fix #11 Call the onChanged function after value change function
+		window.autoTab.options.onChanged.call( oSelf, e );
 		if ( oSelf.value.length < oSelf.maxLength ) {
 			return false;
 		}
 		else if ( oSelf.value.length === oSelf.maxLength ) {
 			selectNextElement( searchNextElement( oSelf ) );
 		} else {
-			// FIx #1 When the DOM elements have more characters than the max length allowed
+			// Fix #1 When the DOM elements have more characters than the max length allowed
 			if( window.autoTab.options.deleteExceedCharacter ) {
 				oSelf.value = oSelf.value.substring( 0, oSelf.maxLength );
 			}
