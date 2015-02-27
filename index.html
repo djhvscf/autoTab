@@ -4,7 +4,36 @@
         <title>autoTab Demos</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">       
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">  
+		<style>
+		    a.git, a.author {
+                font-weight: 300;
+                line-height: 150%;
+                text-decoration: none;
+				position: fixed;
+                top: 0;
+                right: 0;
+                font-size:  13px;
+                line-height: 13px;
+                font-weight: 400;
+                color: black;
+                background: white;
+                -webkit-font-smoothing: subpixel-antialiased;
+            }
+			
+			a.git {
+				padding: 10px 20px;
+			}
+			
+			a.author {
+                padding: 10px 170px 10px 16px;
+            }
+			
+            a.git:hover, a.author:hover {
+                background: #c95a5d;
+				color: #FFFFFF;
+            }
+        </style>   		
     </head>
     <body>
     	<div class="container">
@@ -56,6 +85,8 @@
 			<button type="button" class="btn btn-success" onclick="restore()">Restore autoTab</button>
 			<button type="button" class="btn btn-danger" onclick="destroy()">Destroy autoTab</button>			
         </div>
+		<a class="author" target="_blank" href="http://djhvscf.github.io/Blog/">Author website</a>
+        <a class="git" target="_blank" href="https://github.com/djhvscf/jFont">Download at GitHub</a>
         <script src="src/autoTab.js"></script>
 		<script>
 			var autoTab;
