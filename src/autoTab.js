@@ -204,7 +204,7 @@
 	 */
 	function isValidParameters( params ) {
 		var errorMessage = '';
-		if ( typeof params.autoFocus !== 'boolean' && typeof params.autoFocus !== 'undefined' ) {
+		if ( typeof params.autoFocus !== 'boolean' && typeof params.autoFocus !== 'undefined' && typeof params.autoFocus !== 'number' ) {
 			errorMessage = 'Error. You must pass a boolean in the autofocus parameter';
 		}
 		
@@ -264,7 +264,7 @@
 			if ( totalElements === elements.length  ) {
 				window.autoTab.options.onComplete.call();
 				if ( window.autoTab.options.recursive ) {
-					searchElement( 0 ).focus();
+					focus( { autoFocus: window.autoTab.options.autoFocus } );
 				}
 			}
 			return;
@@ -279,7 +279,7 @@
 				range.moveEnd( 'character', end );
 				range.select();
 			}
-			nextElement.focus();
+			focus( { element: nextElement } );
 		}
 	}
 	
@@ -401,6 +401,21 @@
 	}
 	
 	/**
+	 * Sets the focus on the element passed by parameter
+	 * @param {Object} params
+	 */
+	function focus( params ) {
+		if ( params.element !== undefined && params.element !== null ) {
+			params.element.focus();
+			return;
+		} else {
+			if ( params.autoFocus !== false ) {
+				searchElement ( params.autoFocus === true ? 0 : params.autoFocus ).focus();
+			}
+		}
+	}
+	
+	/**
 	 * autoTab class
 	 * @param {Object} options
 	 */
@@ -453,9 +468,8 @@
 				}
 			} );
 			
-			if ( this.options.autoFocus ) {
-				searchElement( 0 ).focus();
-			}
+			focus( { autoFocus: this.options.autoFocus } );
+			
 		} catch ( ex ) {
 			error( ex );
 		}
@@ -484,7 +498,7 @@
 				cleanValues();
 			}
 		} else {
-			searchElement( 0 ).focus();
+			focus( { autoFocus: this.options.autoFocus } );
 		}
 	}
 	
