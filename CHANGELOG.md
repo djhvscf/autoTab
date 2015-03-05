@@ -6,6 +6,7 @@
 * Added new option `cleanValuesOnRestart`
 * Fixed the issue #9
 * Fixed the issue #11
+* Improve the `focus` function
 
 ### 2.0.16
 * Deleted a variable never used

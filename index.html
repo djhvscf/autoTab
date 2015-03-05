@@ -91,7 +91,7 @@
 		<script>
 			var autoTab;
 	        (function() {
-				autoTab = new autoTab({autoFocus: true, onComplete: oncomp, cleanValuesOnRestart: true});				
+				autoTab = new autoTab({autoFocus: 1, onComplete: oncomp, cleanValuesOnRestart: true});				
 			})();
 			
 			function destroy() {
@@ -115,7 +115,7 @@
 			}
 			
 			function oncomp() {
-				console.log('competed');
+				console.log('completed');
 			}
 			
         </script>
