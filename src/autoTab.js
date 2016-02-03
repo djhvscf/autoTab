@@ -45,7 +45,7 @@
 		dataPattern = 'data-pattern',
 		dataTabStr = '[data-tab="%s"]',
 		enable = true,
-		specialKeys = [ 16, 35, 36, 37, 38, 39, 40 ],
+		specialKeys = [ 9, 16, 35, 36, 37, 38, 39, 40 ],
 		allowElements = [ 'input', 'textarea', 'select', 'button' ],
 		elements = getElements( '[' + dataTab + ']' ),
 		totalElements = 1,
@@ -300,7 +300,8 @@
 		// Fix #2 Can't select the text in input
 		if ( inArray( e.keyCode, specialKeys ) ) {
 			return false;
-		}		
+		}
+
 		var oSelf = this;
 		oSelf.maxLength = oSelf.maxLength === -1 ? parseInt( oSelf.getAttribute( dataLength ) ) : oSelf.maxLength;
 		oSelf.value = filterInputValue( oSelf );

@@ -1,1 +1,4 @@
 node_modules
+*.xml
+.idea/autoTab.iml
+*.name
