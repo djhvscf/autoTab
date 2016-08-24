@@ -1,6 +1,6 @@
  /**
  * autoTab.js
- * @version: v2.0.16
+ * @version: v1.0.0
  * @author: Dennis Hernández
  * @webSite: http://djhvscf.github.io/Blog
  *
@@ -36,26 +36,42 @@
 	
 	'use strict';
 
-	var dataTab = 'data-tab',
+	var dataOrder = 'data-order',
+		dataTab = '[data-tab="true"]',
 		dataLength = 'data-length',
 		dataUpperCase = 'data-upper',
 		dataLowerCase = 'data-lower',
 		dataNoSpace = 'data-nospace',
 		dataFormat = 'data-format',
 		dataPattern = 'data-pattern',
-		dataTabStr = '[data-tab="%s"]',
+		dataOrderStr = '[data-order="%s"]',
 		enable = true,
-		specialKeys = [ 9, 16, 35, 36, 37, 38, 39, 40 ],
-		allowElements = [ 'input', 'textarea', 'select', 'button' ],
-		elements = getElements( '[' + dataTab + ']' ),
+		specialKeys = [ 
+			9, 
+			16, 
+			35, 
+			36, 
+			37, 
+			38, 
+			39, 
+			40 
+		],
+		allowElements = [ 
+			'input', 
+			'textarea', 
+			'select', 
+			'button' 
+		],
+		elements = getElements( dataTab ),
 		totalElements = 1,
 		emptyFunction = function() { },
-		regExpressions = { text: '[0-9]+',
-							alpha: '[^a-zA-Z]+',
-							alphanumeric: '[^0-9a-zA-Z]+',
-							numeric: '[^0-9]+',
-							hexadecimal: '[^0-9A-Fa-f]+'
-						};
+		regExpressions = { 
+			text: '[0-9]+',
+			alpha: '[^a-zA-Z]+',
+			alphanumeric: '[^0-9a-zA-Z]+',
+			numeric: '[^0-9]+',
+			hexadecimal: '[^0-9A-Fa-f]+'
+		};
 	
 	/**
 	 * Replace characters in the string passed by parameter
@@ -130,7 +146,7 @@
 	 * @return {DOM Element} Element found
 	 */
 	function searchElement( index ) {
-		var el = getElement( sprintf( dataTabStr, index ) );
+		var el = getElement( sprintf( dataOrderStr, index ) );
 		if ( el !== null && el.getAttribute( 'disabled' ) === 'disabled' ) {
 			return searchNextElement( el );
 		}
@@ -143,7 +159,7 @@
 	 * @return {DOM Element} Element found
 	 */
 	function searchNextElement( el ) {
-		return searchElement( parseInt( el.getAttribute( dataTab ) ) + 1 );
+		return searchElement( parseInt( el.getAttribute( dataOrder ) ) + 1 );
 	}
 	
 	/**
@@ -188,7 +204,7 @@
 	function isValidElement( el ) {
 		if ( !is( el ) ) {
 			error( 'The element has to be input or textarea or select' );
-		} else if ( !isNumeric( el.getAttribute( dataTab ) ) ) {
+		} else if ( !isNumeric( el.getAttribute( dataOrder ) ) ) {
 			error( 'Error. The element has an invalid property. The data-tab is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
 		}
 		if ( el.nodeName.toLowerCase() !== 'select' && el.nodeName.toLowerCase() !== 'button' ) {
@@ -196,6 +212,10 @@
 				error( 'Error. The element has an invalid property. The data-length is not valid. Element Id or Tag name = ' + el.id === "" ? el.nodeName : el.id );
 			}
 		}
+	}
+
+	function setTabIndexAttr ( el ) {
+		el.setAttribute( 'tabindex', el.getAttribute( dataOrder ) );
 	}
 		
 	/**
@@ -447,6 +467,7 @@
 			totalElements = 1;
 			each ( elements, function( el ) {
 				isValidElement( el );
+				setTabIndexAttr( el );
 				switch ( el.nodeName.toLowerCase() ) {
 					case 'input':
 					case 'textarea':
@@ -469,7 +490,9 @@
 				}
 			} );
 			
-			focus( { autoFocus: this.options.autoFocus } );
+			focus( { 
+				autoFocus: this.options.autoFocus 
+			} );
 			
 		} catch ( ex ) {
 			error( ex );

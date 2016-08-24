@@ -40,31 +40,31 @@
 			<h1>autoTab Demos</h1>
 			<div class="form-group">
 				<label for="firstCombination">data-tab="0" & data-length="5" & data-upper="true"</label>
-				<input name="firstCombination" id="firstCombination" type="text" data-tab="0" data-length="5" data-upper="true" class="form-control">
+				<input name="firstCombination" id="firstCombination" type="text" data-tab="true" data-order="0" data-length="5" data-upper="true" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="secondCombination">data-tab="1" & data-length="4"</label>
-				<input name="secondCombination" id="secondCombination" type="text" data-tab="1" data-length="4" class="form-control">
+				<input name="secondCombination" id="secondCombination" type="text" data-tab="true" data-order="1" data-length="4" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="sevenCombination">data-tab="6" & data-length="6" & data-nospace="true"</label>
-				<input name="sevenCombination" id="sevenCombination" type="text" data-tab="6" data-length="6" data-nospace="true" class="form-control">
+				<input name="sevenCombination" id="sevenCombination" type="text" data-tab="true" data-order="6" data-length="6" data-nospace="true" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="thirdCombination">data-tab="2" & data-length="5" & disabled="disabled"</label>
-				<input name="thirdCombination" id="thirdCombination" type="text" data-tab="2" data-length="5" disabled="disabled" class="form-control">
+				<input name="thirdCombination" id="thirdCombination" type="text" data-tab="true" data-order="2" data-length="5" disabled="disabled" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="fifthCombination">data-tab="4" & data-length="5" & data-format="custom" & data-pattern="[^0-9\.]"</label>
-				<input name="fifthCombination" id="fifthCombination" type="text" data-tab="4" & data-length="5" data-format="custom" data-pattern="[^0-9\.]" class="form-control">
+				<input name="fifthCombination" id="fifthCombination" type="text" data-tab="true" data-order="4" data-length="5" data-format="custom" data-pattern="[^0-9\.]" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="fourthCombination">data-tab="9" & data-length="5" & data-format="numeric"</label>
-				<input name="fourthCombination" id="fourthCombination" type="password" data-tab="9" data-length="5" data-format="numeric" class="form-control">
+				<input name="fourthCombination" id="fourthCombination" type="password" data-tab="true" data-order="9" data-length="5" data-format="numeric" class="form-control">
 			</div>
 			<div class="form-group">
 				<label>data-tab="7"</label>
-				<select class="form-control" data-tab="7">
+				<select class="form-control" data-tab="true" data-order="7">
 					<option>First</option>                    
 					<option>Second</option>
 					<option>Third</option>
@@ -72,15 +72,15 @@
 			</div>
 			<div class="form-group">
 				<label for="textarea">data-tab="8" & data-length="4"</label>
-				<textarea name="txtDescription" cols=10 rows=3 data-tab="8" data-length="4" class="form-control"></textarea>
+				<textarea name="txtDescription" cols=10 rows=3 data-tab="true" data-order="8" data-length="4" class="form-control"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="sixthCombination">data-tab="5" & data-length="8"</label>
-				<input name="sixthCombination" id="sixthCombination" type="text" data-tab="5" data-length="8" class="form-control">
+				<input name="sixthCombination" id="sixthCombination" type="text" data-tab="true" data-order="5" data-length="8" class="form-control">
 			</div>
 			<div class="form-group">
 				<label>data-tab="3"</label>
-				<button type="button" class="btn btn-info" data-tab="3">Button</button>
+				<button type="button" class="btn btn-info" data-tab="true" data-order="3">Button</button>
 			</div>
 			<button type="button" class="btn btn-success" onclick="restore()">Restore autoTab</button>
 			<button type="button" class="btn btn-danger" onclick="destroy()">Destroy autoTab</button>			

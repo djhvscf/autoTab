@@ -1,6 +1,6 @@
 {
     "name": "autoTab",
-    "version": "2.0.16",
+    "version": "1.0.0",
     "title": "autoTab",
     "description": "A plugin that allows the auto tab between inputs and text areas. It is beautiful and lightweight plugin. No jQuery",
     "author": {

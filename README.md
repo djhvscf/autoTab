@@ -4,7 +4,7 @@ A plugin that allows the auto tab between inputs and text areas. It is beautiful
 Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 ## Current version
-* **v2.0.16** `10/Feb/2015`
+* **v1.0.0** `23/Ago/2016`
 
 ## Bugs & Enhancements (next version)
 
@@ -12,17 +12,7 @@ Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
 | Version Number  | Date          |
 | --------------- | -----------   |
-| v2.0.16		  |	`10/Feb/2015` |
-| v2.0.8		  |	`06/Feb/2015` |
-| v2.0.3		  |	`18/Jan/2015` |
-| v2.0.0		  |	`10/Jan/2015` |
-| v1.6.0		  |	`02/Jan/2015` |
-| v1.5.0		  |	`30/Dic/2014` |
-| v1.4.2		  |	`29/Dic/2014` |
-| v1.4.0		  |	`28/Dic/2014` |
-| v1.3.0		  |	`24/Dic/2014` |
-| v1.2.0		  |	`24/Dic/2014` |
-| v1.0.0		  |	`23/Dic/2014` |
+| v1.0.0		  |	`23/Ago/2016` |
 
 ## Dependencies
 * In this moment this plugin doesn't have dependencies
@@ -56,7 +46,8 @@ this property will be the `maxlength` property in each input element and it help
 
 | Tag | Description | Required | Data type | DOM Element |
 | ---------- | ----------- | ------- | ------- | ------- |
-| `data-tab` | Sets the input order | Yes | `"0" to "N"` | `input`, `textarea`, `select`, `button` |
+| `data-tab` | COnfigures the element to be used in autotab | Yes | `"true" or "false"` | `input`, `textarea`, `select`, `button` |
+| `data-order` | Sets the input order | Yes | `"0" to "N"` | `input`, `textarea`, `select`, `button` |
 | `data-length` | The length allowed by input element | Yes | `"0" to "N"` | `input`, `textarea` |
 | `data-upper` | Converts the input value to upper case | No | `"true" or "false"` | `input`, `textarea` |
 | `data-lower` | Converts the input value to lower case | No | `"true" or "false"` | `input`, `textarea` |
