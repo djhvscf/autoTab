@@ -6,7 +6,7 @@
  *
  * Created by Dennis Hernández on 30/Dic/2014.
  *
- * Copyright (c) 2014 Dennis Hernández http://djhvscf.github.io/Blog
+ * Copyright (c) 2017 Dennis Hernández http://djhvscf.github.io/Blog
  *	
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  *
@@ -37,41 +37,41 @@
 	'use strict';
 
 	var dataOrder = 'data-order',
-		dataTab = '[data-tab="true"]',
-		dataLength = 'data-length',
-		dataUpperCase = 'data-upper',
-		dataLowerCase = 'data-lower',
-		dataNoSpace = 'data-nospace',
-		dataFormat = 'data-format',
-		dataPattern = 'data-pattern',
-		dataOrderStr = '[data-order="%s"]',
-		enable = true,
-		specialKeys = [ 
-			9, 
-			16, 
-			35, 
-			36, 
-			37, 
-			38, 
-			39, 
-			40 
-		],
-		allowElements = [ 
-			'input', 
-			'textarea', 
-			'select', 
-			'button' 
-		],
-		elements = getElements( dataTab ),
-		totalElements = 1,
-		emptyFunction = function() { },
-		regExpressions = { 
-			text: '[0-9]+',
-			alpha: '[^a-zA-Z]+',
-			alphanumeric: '[^0-9a-zA-Z]+',
-			numeric: '[^0-9]+',
-			hexadecimal: '[^0-9A-Fa-f]+'
-		};
+	dataTab = '[data-tab="true"]',
+	dataLength = 'data-length',
+	dataUpperCase = 'data-upper',
+	dataLowerCase = 'data-lower',
+	dataNoSpace = 'data-nospace',
+	dataFormat = 'data-format',
+	dataPattern = 'data-pattern',
+	dataOrderStr = '[data-order="%s"]',
+	enable = true,
+	specialKeys = [ 
+		9, 
+		16, 
+		35, 
+		36, 
+		37, 
+		38, 
+		39, 
+		40 
+	],
+	allowElements = [ 
+		'input', 
+		'textarea', 
+		'select', 
+		'button' 
+	],
+	elements = getElements( dataTab ),
+	totalElements = 1,
+	emptyFunction = function() { },
+	regExpressions = { 
+		text: '[0-9]+',
+		alpha: '[^a-zA-Z]+',
+		alphanumeric: '[^0-9a-zA-Z]+',
+		numeric: '[^0-9]+',
+		hexadecimal: '[^0-9A-Fa-f]+'
+	};
 	
 	/**
 	 * Replace characters in the string passed by parameter
